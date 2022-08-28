@@ -1,11 +1,14 @@
 import React from 'react';
 import './App.css';
 import Router from './Router/Router';
+import ContextProvider from './context/ContextProvider';
 
 function App() {
   return (
     <main className="App">
-      <Router />
+      <ContextProvider>
+        <Router />
+      </ContextProvider>
     </main>
   );
 }

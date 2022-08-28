@@ -1,9 +1,12 @@
 import React from 'react'
+import './Card.scss'
 
-const Card = () => {
+
+const Card = ( { image }:{ image:string }) => {  
+  
   return (
-    <div>
-        Card
+    <div className='card'>
+        <img src={`${image}`} alt="imagenPelicula" />
     </div>
   )
 }
