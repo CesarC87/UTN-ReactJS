@@ -1,15 +1,11 @@
 import React from 'react';
 import './App.css';
-import Footer from './components/Footer';
-import Header from './components/Header';
-import Home from './components/Home';
+import Router from './Router/Router';
 
 function App() {
   return (
     <main className="App">
-      <Header />
-      <Home />
-      <Footer />
+      <Router />
     </main>
   );
 }
