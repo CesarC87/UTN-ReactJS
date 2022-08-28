@@ -1,10 +1,11 @@
 import React from 'react'
+import './Footer.scss'
 
 const Footer = () => {
 
     //Logo
   return (
-    <footer>
+    <footer className='footer'>
         <img src="" alt="LogoFooter" />
         <ul>
             <li>Género</li>
