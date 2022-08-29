@@ -10,7 +10,8 @@
   --font-principal: 'Poppins', sans-serif;
   --font-secundario: 'Roboto Slab', serif;
 }
-*{
+*,
+h1, h2, h3, h4, h5,h6, p, a{
   margin: 0;
   padding: 0;
 }
@@ -45,7 +46,13 @@ h4{
   font-size: 18px;
   font-family: var(--font-principal);
   font-weight: 600;
-  color: var(--orange);
+  color: var(--dark-blue);
+
+  span{
+    font-family: var(--font-secundario);
+    font-size: 12px;
+    font-weight: 300;
+  }
 }
 p{
   font-size: 16px;
