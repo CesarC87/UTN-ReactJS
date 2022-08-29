@@ -1,4 +1,4 @@
-import React , { useContext } from 'react'
+import React , { useContext, useState } from 'react'
 import Card from '../../components/Card/Card'
 import { Context } from '../../context/Context'
 
@@ -6,12 +6,14 @@ import './CardContainer.scss'
 
 const CardContainer = () => {
 
-  const { setQuery, data } = useContext(Context)  
-  const imageUrl = 'https://image.tmdb.org/t/p/original'
-  
+  const { setQuery, data, imageUrl } = useContext(Context)  
+  const [ paginate, setPaginate ] = useState(12)  
 
   const handleQuerySearch = (e:any) => {
     setQuery(e.target.value)    
+  }
+  const handlePaginate = () => {
+    setPaginate( prev => prev + 12 )
   }
 
   return (
@@ -19,12 +21,13 @@ const CardContainer = () => {
     <input type="text" onChange={(e)=>handleQuerySearch(e)}/>
     <div className='cardContainer'>
       {
-        data?.map( (film:any) => {
+        data?.slice(0, paginate).map( (film:any) => {
           let { poster_path } = film;
           return <Card image={`${imageUrl+poster_path}`}/>
         })
       }
     </div>
+    <button onClick={handlePaginate}>Más títulos</button>
     </>
   )
 }

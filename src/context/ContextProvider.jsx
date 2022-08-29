@@ -6,7 +6,7 @@ const ContextProvider = ( { children } ) => {
 
   const [ query, setQuery ] = useState('')
   const [ data, setData ] = useState([])
-  console.log(data)
+  const imageUrl = 'https://image.tmdb.org/t/p/original'
 
   useEffect(()=>{ 
     let api_key = "ec740ed26fd6ef4871dca3a51b00aa7a"
@@ -16,7 +16,7 @@ const ContextProvider = ( { children } ) => {
   },[query])
 
   return (
-    <Context.Provider value={{ data , setQuery}}>
+    <Context.Provider value={{ data, imageUrl, setQuery}}>
             { children }
     </Context.Provider>
   )
