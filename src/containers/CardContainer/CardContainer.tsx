@@ -15,6 +15,9 @@ const CardContainer = () => {
 		setPaginate((prev) => prev + 12);
 	};
 
+  console.log('Data: ', data.length)
+  console.log('Paginate:', paginate)
+
 	return (
 		<div className="card-container">
 			<div className="busador">
@@ -42,7 +45,8 @@ const CardContainer = () => {
 					})}
 				</div>
 				<div className="card-container-footer">
-					<button onClick={handlePaginate}>Más títulos</button>
+          {paginate < data.length &&
+					<button onClick={handlePaginate}>Más títulos</button>}
 				</div>
 			</div>
 		</div>

@@ -7,7 +7,7 @@ import imagenReemplazo from '../../assets/moviefun-replace.jpg'
 import "./Card.scss";
 
 const Card = ({ film, imageUrl } : {film: any, imageUrl: any}) => {
-  console.log('Film: ', film);
+  // console.log('Film: ', film);
   const vote_average = Number(film.vote_average) * 10;
   const color = 'hsl(32, 100%, ' + ( (vote_average * .5) + 50 ) + '%)';
   const vote_color = {color: color} ;
@@ -26,7 +26,10 @@ const Card = ({ film, imageUrl } : {film: any, imageUrl: any}) => {
           </span>
         </div>
         <div className="card-content">
-          <h4>{film.title} <span>({film.release_date.substring(0,4)})</span></h4>
+          <h4>
+            {film.title} 
+            {film.release_date && film.real_release_date != undefined && <span>&nbsp;({film.release_date.substring(0,4)})</span>}
+          </h4>
         </div>
 			</div>
 		</div>
