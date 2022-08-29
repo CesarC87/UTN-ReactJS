@@ -9,7 +9,7 @@ import "./Card.scss";
 const Card = ({ film, imageUrl } : {film: any, imageUrl: any}) => {
   console.log('Film: ', film);
   const vote_average = Number(film.vote_average) * 10;
-  const color = 'hsl(32, 100%, ' + ( 50 + (vote_average * .5) ) + '%)';
+  const color = 'hsl(32, 100%, ' + ( (vote_average * .5) + 50 ) + '%)';
   const vote_color = {color: color} ;
 	return (
 		<div className="col-2" >
