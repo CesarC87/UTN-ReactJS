@@ -10,7 +10,7 @@ const ContextProvider = ( { children } ) => {
 
   useEffect(()=>{ 
     let api_key = "ec740ed26fd6ef4871dca3a51b00aa7a"
-    axios.get(`https://api.themoviedb.org/3/search/movie?api_key=${api_key}&query=${query}`)
+    axios.get(`https://api.themoviedb.org/3/search/movie?api_key=${api_key}&query=${query}&language=es-MX`)
     .then((response) => setData(response.data.results))
     .catch((err) => console.log(err))
   },[query])

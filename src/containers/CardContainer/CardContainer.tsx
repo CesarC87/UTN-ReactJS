@@ -16,16 +16,33 @@ const CardContainer = () => {
 	};
 
 	return (
-		<div className="container">
-			<input type="search" onChange={(e) => handleQuerySearch(e)} />
-
-			<div className="cardContainer row">
-				{data?.slice(0, paginate).map((film: any) => {
-					let { poster_path } = film;
-					return <Card image={`${imageUrl + poster_path}`} key={film.id} />;
-				})}
+		<div className="card-container">
+			<div className="busador">
+				<div className="container">
+          <label>
+            <span>Encontrá tu película favorita</span>
+					<input
+						type="search"
+						onChange={(e) => handleQuerySearch(e)}
+            />
+            </label>
+				</div>
 			</div>
-			<button onClick={handlePaginate}>Más títulos</button>
+
+			<div className="container">
+				<div className="card-container-list row">
+					{data?.slice(0, paginate).map((film: any) => {
+						return (
+							<Card
+								film={film}
+								imageUrl={imageUrl}
+								key={film.id}
+							/>
+						);
+					})}
+				</div>
+				<button onClick={handlePaginate}>Más títulos</button>
+			</div>
 		</div>
 	);
 };
