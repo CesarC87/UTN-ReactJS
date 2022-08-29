@@ -19,13 +19,13 @@ const CardContainer = () => {
 		<div className="card-container">
 			<div className="busador">
 				<div className="container">
-          <label>
-            <span>Encontrá tu película favorita</span>
-					<input
-						type="search"
-						onChange={(e) => handleQuerySearch(e)}
-            />
-            </label>
+					<label>
+						<span>Encontrá tu película favorita</span>
+						<input
+							type="search"
+							onChange={(e) => handleQuerySearch(e)}
+						/>
+					</label>
 				</div>
 			</div>
 
@@ -41,7 +41,9 @@ const CardContainer = () => {
 						);
 					})}
 				</div>
-				<button onClick={handlePaginate}>Más títulos</button>
+				<div className="card-container-footer">
+					<button onClick={handlePaginate}>Más títulos</button>
+				</div>
 			</div>
 		</div>
 	);
