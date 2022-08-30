@@ -1,5 +1,6 @@
 import React from 'react';
-import './App.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import './App.scss';
 import Router from './Router/Router';
 import ContextProvider from './context/ContextProvider';
 
