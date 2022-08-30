@@ -15,11 +15,14 @@ const Card = ({ film, imageUrl } : {film: any, imageUrl: any}) => {
 		<div className="col-2" >
 			<div className="card" onClick={()=>{console.log('Detale pelicula')}}>
         <div className="card-image">
+          <div>
+
           {film.poster_path == null ?
           <img src={imagenReemplazo} alt={film.title} />
           :
           <img src={imageUrl + film.poster_path} alt={film.title} />
-          }
+        }
+        </div>
           <span className="raiting">
             <FontAwesomeIcon icon={faClapperboard} className="icon"  style={vote_color}/>
             <span>{vote_average}%</span>
