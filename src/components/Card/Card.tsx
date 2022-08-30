@@ -28,7 +28,7 @@ const Card = ({ film, imageUrl } : {film: any, imageUrl: any}) => {
         <div className="card-content">
           <h4>
             {film.title} 
-            {film.release_date && film.real_release_date != undefined && <span>&nbsp;({film.release_date.substring(0,4)})</span>}
+            {film.release_date && film.real_release_date !== undefined && <span>&nbsp;({film.release_date.substring(0,4)})</span>}
           </h4>
         </div>
 			</div>
