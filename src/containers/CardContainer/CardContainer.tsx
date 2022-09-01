@@ -19,7 +19,7 @@ const CardContainer = () => {
 	};
 	const handlePaginate = () => {
 		setPaginate((prev) => prev + 12);
-	}; 
+	};
 
 	return (
 		<div className="card-container">
@@ -35,28 +35,36 @@ const CardContainer = () => {
 				</div>
 			</div>
 
-			{
-        queryResults.length > 0 ?
-        <div className="container">
-				<div className="card-container-list row">
-					{queryResults.slice(0, paginate).map((film: any) => {
-						return (           
-                <Card
-                  film={film}
-                  imageUrl={imageUrl}
-                  key={film.id}                 
-                />                         
-						);
-					}) 
-        }
+			{queryResults.length > 0 ? (
+				<div className="container">
+					<div className="card-container-list row">
+						{queryResults.slice(0, paginate).map((film: any) => {
+							return (
+								<div className="col-6 col-md-4 col-lg-2">
+									<Card
+										film={film}
+										imageUrl={imageUrl}
+										key={film.id}
+									/>
+								</div>
+							);
+						})}
+					</div>
+					<div className="card-container-footer">
+						{paginate < queryResults.length && (
+							<button onClick={handlePaginate}>
+								Más títulos
+							</button>
+						)}
+					</div>
 				</div>
-				<div className="card-container-footer">
-          {paginate < queryResults.length &&
-					<button onClick={handlePaginate}>Más títulos</button>}
-				</div>			
-       </div>
-       : notFound && <div className='notFound'>No se encontraron resultados para tu búsqueda</div>
-      }
+			) : (
+				notFound && (
+					<div className="notFound">
+						No se encontraron resultados para tu búsqueda
+					</div>
+				)
+			)}
 		</div>
 	);
 };

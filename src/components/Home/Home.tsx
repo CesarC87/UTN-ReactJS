@@ -3,26 +3,52 @@ import CardContainer from '../../containers/CardContainer/CardContainer'
 import Popular from '../Popular/Popular'
 import Trending from '../Trending/Trending'
 import Series from '../Series/Series'
+import './Home.scss'
 
-import { Context } from '../../context/Context'
+import { Context } from "../../context/Context";
+import CarouselHome from "../CarouselHome/CarouselHome";
 
 const Home = () => {
+	const { queryResults, topRated, populares, series } = useContext(Context);
 
-  const { queryResults } = useContext(Context)  
+	return (
+		<section>		
+			<CardContainer />
+			{queryResults.length === 0 && (
+				<div className="carousel-area">
+					<div className="container">
+						<CarouselHome
+							listado={topRated}
+							titulo="Populares en MovieFun"
+						/>
+						<hr />
+						<CarouselHome
+							listado={populares}
+							titulo="Tendencia esta semana"
+						/>
+						<hr />
+						<CarouselHome listado={series} titulo="Series" />
+					</div>
+				</div>
+			)}		
+		</section>
+	);
+};
 
-  return (
-    <section>      
-      <CardContainer />
-      {
-        queryResults.length === 0 ?
-        <>
-          <Popular/>
-          <Trending/>
-          <Series/>
-        </> : <div></div>
-      }      
-    </section>
-  )
-}
+//   return (
+//     <section>      
+//       <CardContainer />
+//       {
+//         queryResults.length === 0 ?
+//         <>
+//           <Popular/>
+//           <Trending/>
+//           <Series/>
+//         </> : <div></div>
+//       }      
+//     </section>
+//   )
+// }
 
-export default Home
+// export default Home
+export default Home;
