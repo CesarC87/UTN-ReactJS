@@ -6,16 +6,17 @@ import "./CardContainer.scss";
 
 const CardContainer = () => {
 	const { setQuery, queryResults, imageUrl, notFound } = useContext(Context);
-	const [paginate, setPaginate] = useState(12);
-	const search = useRef(null);
-	const debounce = useRef<NodeJS.Timeout>();
+
+	const [paginate, setPaginate] = useState(12);  
+  const debounce = useRef<NodeJS.Timeout>()  
+
+  console.log(queryResults)
 
 	const handleQuerySearch = (e: ChangeEvent<HTMLInputElement>) => {
-		debounce.current && clearTimeout(debounce.current);
-
-		debounce.current = setTimeout(() => {
-			setQuery(e.target.value);
-		}, 350);
+    debounce.current && clearTimeout( debounce.current )
+    debounce.current = setTimeout(()=>{
+      setQuery(e.target.value);
+    }, 350)
 	};
 	const handlePaginate = () => {
 		setPaginate((prev) => prev + 12);

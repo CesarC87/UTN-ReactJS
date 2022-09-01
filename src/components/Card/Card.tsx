@@ -1,7 +1,8 @@
 import React from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faClapperboard } from "@fortawesome/free-solid-svg-icons";
-// import { solid, regular, brands } from '@fortawesome/fontawesome-svg-core/import.macro'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faClapperboard } from '@fortawesome/free-solid-svg-icons'
+import { Link } from "react-router-dom";
+// import { solid, regular, brands } from '@fortawesome/fontawesome-svg-core/import.macro' 
 
 import imagenReemplazo from "../../assets/moviefun-replace.jpg";
 import "./Card.scss";
@@ -11,7 +12,9 @@ const Card = ({ film, imageUrl }: { film: any; imageUrl: any }) => {
 	const vote_average = Number(film.vote_average) * 10;
 	const color = "hsl(32, 100%, " + (vote_average * 0.5 + 50) + "%)";
 	const vote_color = { color: color };
+  const titleId = film.id;
 	return (
+    <Link to={`/title/${titleId}`}>
 		<div
 			className="card"
 			onClick={() => {
@@ -50,6 +53,7 @@ const Card = ({ film, imageUrl }: { film: any; imageUrl: any }) => {
 				</h4>
 			</div>
 		</div>
+    </Link>
 	);
 };
 

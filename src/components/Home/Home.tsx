@@ -1,7 +1,5 @@
-import React, { useContext } from "react";
-import CardContainer from "../../containers/CardContainer/CardContainer";
-import Header from "../Header/Header";
-import Footer from "../Footer/Footer";
+import React , {useContext} from 'react'
+import CardContainer from '../../containers/CardContainer/CardContainer'
 import './Home.scss'
 
 import { Context } from "../../context/Context";
@@ -11,8 +9,7 @@ const Home = () => {
 	const { queryResults, topRated, populares, series } = useContext(Context);
 
 	return (
-		<section>
-			<Header />
+		<section>		
 			<CardContainer />
 			{queryResults.length === 0 && (
 				<div className="carousel-area">
@@ -30,10 +27,25 @@ const Home = () => {
 						<CarouselHome listado={series} titulo="Series" />
 					</div>
 				</div>
-			)}
-			<Footer />
+			)}		
 		</section>
 	);
 };
 
+//   return (
+//     <section>      
+//       <CardContainer />
+//       {
+//         queryResults.length === 0 ?
+//         <>
+//           <Popular/>
+//           <Trending/>
+//           <Series/>
+//         </> : <div></div>
+//       }      
+//     </section>
+//   )
+// }
+
+// export default Home
 export default Home;
