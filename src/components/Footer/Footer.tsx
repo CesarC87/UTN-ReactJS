@@ -8,7 +8,7 @@ const Footer = () => {
 		<footer className="footer">
 			<div className="container">
 				<div className="row">
-					<div className="col-4">
+					<div className="col-12 col-md-4 logo-area">
 						<a href="/" title="Moviefun">
 							<img
 								src={logoFooter}
@@ -16,14 +16,14 @@ const Footer = () => {
 							/>
 						</a>
 					</div>
-					<div className="col-4">
+					<div className="col-6 col-md-4">
 						<ul>
 							<li>Género</li>
 							<li>Película</li>
 							<li>Serie</li>
 						</ul>
 					</div>
-					<div className="col-4">
+					<div className="col-6 col-md-4">
 						<ul>
 							<li>¿Quienes somos?</li>
 							<li>Contacto</li>

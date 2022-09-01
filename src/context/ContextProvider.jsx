@@ -12,6 +12,7 @@ const ContextProvider = ( { children } ) => {
   const [ notFound, setNotFound ] = useState(false)
   const imageUrl = 'https://image.tmdb.org/t/p/original'
   const api_key = "ec740ed26fd6ef4871dca3a51b00aa7a"
+  const language = 'es-MX'
 
   useEffect(()=>{ 
     axios.get(`https://api.themoviedb.org/3/search/movie?api_key=${api_key}&query=${query}&language=es-MX`)
@@ -30,15 +31,15 @@ const ContextProvider = ( { children } ) => {
   
   useEffect(()=>{ 
     //Mejores rankeadas
-    axios.get(`https://api.themoviedb.org/3/movie/top_rated?api_key=${api_key}&language=en-US&page=1`)
+    axios.get(`https://api.themoviedb.org/3/movie/top_rated?api_key=${api_key}&language=${language}&page=1`)
     .then((response) => setTopRated(response.data.results))
     .catch((err) => console.log(err))
     //Tendencias
-    axios.get(`https://api.themoviedb.org/3/movie/popular?api_key=${api_key}&language=en-US&page=1`)
+    axios.get(`https://api.themoviedb.org/3/movie/popular?api_key=${api_key}&language=${language}&page=1`)
     .then((response) => setPopulares(response.data.results))
     .catch((err) => console.log(err))
     //Series
-    axios.get(`https://api.themoviedb.org/3/tv/popular?api_key=${api_key}&language=en-US&page=1`)
+    axios.get(`https://api.themoviedb.org/3/tv/popular?api_key=${api_key}&language=${language}&page=1`)
     .then((response) => setSeries(response.data.results))
     .catch((err) => console.log(err))
   },[])

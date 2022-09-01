@@ -1,0 +1,29 @@
+.carousel-container {
+	&-list {
+		display: flex;
+		justify-content: flex-start;
+		flex-wrap: wrap;
+		padding: 1em 0 2em;
+		min-height: 300px;
+	}
+	.container {
+		& h3 {
+			text-align: initial;
+			margin-top: 1%;
+		}
+	}
+	.react-multi-carousel-list {
+		li {
+			padding: 0 10px;
+		}
+
+		.react-multiple-carousel__arrow {
+			&--left {
+				left: 0;
+			}
+			&--right {
+				right: 0;
+			}
+		}
+	}
+}

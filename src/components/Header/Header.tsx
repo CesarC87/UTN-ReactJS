@@ -10,7 +10,7 @@ const Header = () => {
 		<header className="header">
 			<div className="container">
 				<div className="row">
-					<div className="col-4 logo">
+					<div className="col-12 col-md-6 col-lg-4 logo">
 						<a href="/" title="Moviefun">
 							<img
 								src={logo}
@@ -18,7 +18,7 @@ const Header = () => {
 							/>
 						</a>
 					</div>
-					<div className="col-8">
+					<div className="col-12 col-md-6 col-lg-8">
 						<nav>
 							<ul>
 								<li>
