@@ -7,6 +7,7 @@ import "./CardContainer.scss";
 const CardContainer = () => {
 	const { setQuery, queryResults, imageUrl, notFound } = useContext(Context);
 	const [paginate, setPaginate] = useState(12);
+	const search = useRef(null);
 	const debounce = useRef<NodeJS.Timeout>();
 
 	const handleQuerySearch = (e: ChangeEvent<HTMLInputElement>) => {
@@ -20,17 +21,31 @@ const CardContainer = () => {
 		setPaginate((prev) => prev + 12);
 	};
 
+	const handleBorrar = (e: any) => {
+		e.preventDefault();
+		// search.current.value = '';
+	};
 	return (
 		<div className="card-container">
 			<div className="busador">
 				<div className="container">
-					<label>
-						<span>Encontrá tu película favorita</span>
-						<input
-							type="search"
-							onChange={(e) => handleQuerySearch(e)}
-						/>
-					</label>
+					<form action="" id="form">
+						<label>
+							<span>Encontrá tu película favorita</span>
+							<div>
+								<input
+									type="search"
+									onChange={(e) => handleQuerySearch(e)}
+									id="search"
+									className="search"
+								/>
+								<button
+									className="borrar"
+									onClick={handleBorrar}
+								>X</button>
+							</div>
+						</label>
+					</form>
 				</div>
 			</div>
 
@@ -39,7 +54,10 @@ const CardContainer = () => {
 					<div className="card-container-list row">
 						{queryResults.slice(0, paginate).map((film: any) => {
 							return (
-								<div className="col-6 col-md-4 col-lg-2">
+								<div
+									className="col-6 col-md-4 col-lg-2"
+									key={film.id}
+								>
 									<Card
 										film={film}
 										imageUrl={imageUrl}
