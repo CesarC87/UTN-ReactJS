@@ -1,7 +1,5 @@
 import React , {useContext} from 'react'
 import CardContainer from '../../containers/CardContainer/CardContainer'
-import Header from '../Header/Header'
-import Footer from '../Footer/Footer'
 import Popular from '../Popular/Popular'
 import Trending from '../Trending/Trending'
 import Series from '../Series/Series'
@@ -13,8 +11,7 @@ const Home = () => {
   const { queryResults } = useContext(Context)  
 
   return (
-    <section>
-      <Header/>
+    <section>      
       <CardContainer />
       {
         queryResults.length === 0 ?
@@ -23,8 +20,7 @@ const Home = () => {
           <Trending/>
           <Series/>
         </> : <div></div>
-      }
-      <Footer/>
+      }      
     </section>
   )
 }

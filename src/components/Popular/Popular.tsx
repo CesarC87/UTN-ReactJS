@@ -6,7 +6,7 @@ import './Popular.scss'
 const Popular = () => {
 
     const { topRated, imageUrl } = useContext(Context);
-	const [paginate, setPaginate] = useState(6);
+	const [paginate, setPaginate] = useState(6);    
 
     const handlePaginate = () => {
 		setPaginate((prev) => prev + 6);
@@ -18,12 +18,12 @@ const Popular = () => {
             <h3>Populares en IMDB</h3>
 				<div className="populares-container-list row">
 					{topRated?.slice(0, paginate).map((film: any) => {
-						return (
-							<Card
-								film={film}
-								imageUrl={imageUrl}
-								key={film.id}
-							/>
+						return (                            
+                                <Card
+                                    film={film}
+                                    imageUrl={imageUrl}
+                                    key={film.id}                                    
+                                />                         
 						);
 					})}
 				</div>

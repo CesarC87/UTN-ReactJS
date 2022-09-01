@@ -21,7 +21,7 @@ const Trending = () => {
 							<Card
 								film={film}
 								imageUrl={imageUrl}
-								key={film.id}
+								key={film.id}                                
 							/>
 						);
 					})}

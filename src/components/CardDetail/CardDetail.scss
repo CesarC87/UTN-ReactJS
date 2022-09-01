@@ -1,0 +1,28 @@
+.cardDetail {  
+  background-repeat: no-repeat;
+  background-size: cover;
+  margin: 3% 0;
+  &__izq {
+    width: 30%;
+    &--imgContainer {
+      height: 500px;
+      width: 333px;
+      margin: 10% 0 10% 35%;
+    //   box-shadow: var(--shadow-elevation-medium);
+      border-radius: 10px;
+      & img {
+        height: inherit;
+        width: inherit;
+        border-radius: inherit;
+      }
+    }
+  }
+  &__der {
+    width: 70%;
+  }
+}
+.filter {
+  background-image: linear-gradient(to right, rgb(0 0 0 / 89%) 150px, rgba(32, 44, 95, 0.84) 100%);;
+  width: 100%;
+  display: flex;
+}

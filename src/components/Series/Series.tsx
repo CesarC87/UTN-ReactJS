@@ -22,7 +22,7 @@ const Series = () => {
 							<Card
 								film={film}
 								imageUrl={imageUrl}
-								key={film.id}
+								key={film.id}                               
 							/>
 						);
 					})}

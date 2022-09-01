@@ -7,11 +7,12 @@ import "./CardContainer.scss";
 const CardContainer = () => {
 	const { setQuery, queryResults, imageUrl, notFound } = useContext(Context);
 	const [paginate, setPaginate] = useState(12);  
-  const debounce = useRef<NodeJS.Timeout>()
+  const debounce = useRef<NodeJS.Timeout>()  
+
+  console.log(queryResults)
 
 	const handleQuerySearch = (e: ChangeEvent<HTMLInputElement>) => {
     debounce.current && clearTimeout( debounce.current )
-
     debounce.current = setTimeout(()=>{
       setQuery(e.target.value);
     }, 350)
@@ -39,12 +40,12 @@ const CardContainer = () => {
         <div className="container">
 				<div className="card-container-list row">
 					{queryResults.slice(0, paginate).map((film: any) => {
-						return (
-							<Card
-								film={film}
-								imageUrl={imageUrl}
-								key={film.id}
-							/>
+						return (           
+                <Card
+                  film={film}
+                  imageUrl={imageUrl}
+                  key={film.id}                 
+                />                         
 						);
 					}) 
         }
