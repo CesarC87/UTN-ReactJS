@@ -1,8 +1,5 @@
 import React , {useContext} from 'react'
 import CardContainer from '../../containers/CardContainer/CardContainer'
-import Popular from '../Popular/Popular'
-import Trending from '../Trending/Trending'
-import Series from '../Series/Series'
 import './Home.scss'
 
 import { Context } from "../../context/Context";

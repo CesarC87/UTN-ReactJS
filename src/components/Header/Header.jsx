@@ -1,11 +1,15 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link , NavLink } from "react-router-dom";
 import logo from '../../assets/moviefun-logo.png';
 import "./Header.scss";
 
 const Header = () => {
 	// Logo
 	// Menu
+  const active = {
+    border: '1px solid gray',
+    color: 'darkgray'
+  }
 	return (
 		<header className="header">
 			<div className="container">
@@ -22,16 +26,28 @@ const Header = () => {
 						<nav>
 							<ul>
 								<li>
-									<Link to="/">Inicio</Link>{" "}
+								<NavLink to="/" style={({ isActive }) => {									
+									return isActive ? active : null}}
+									>Home
+								</NavLink>
 								</li>
 								<li>
-									<Link to="/">Generos</Link>{" "}
+								<NavLink to="/a" style={({ isActive }) => {
+									return isActive ? active : null}}
+									>Géneros
+								</NavLink>
 								</li>
 								<li>
-									<Link to="/">Películas</Link>{" "}
+								<NavLink to="/b" style={({ isActive }) => {
+									return isActive ? active : null}}
+									>Películas
+								</NavLink>
 								</li>
 								<li>
-									<Link to="/">Destacadas</Link>{" "}
+								<NavLink to="/c" style={({ isActive }) => {
+									return isActive ? active : null}}
+									>Destacadas
+								</NavLink>
 								</li>
 							</ul>
 						</nav>

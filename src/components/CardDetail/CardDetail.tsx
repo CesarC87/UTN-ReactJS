@@ -26,7 +26,7 @@ const CardDetail = () => {
                     <img src={`${img}`} alt="" />
                 </div>
             </div>
-            <div className="cardDetail__der">
+            <div className="cardDetail__der"> { /* aca va la info */} 
                 <h3>Titulo</h3>
             </div>
         </div>
