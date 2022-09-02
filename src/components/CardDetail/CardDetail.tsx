@@ -10,13 +10,12 @@ const CardDetail = () => {
 	const { setId, titleDetail, imageUrl } = useContext(Context);
 	const img = `${imageUrl + titleDetail.poster_path}`;
 	const img2 = `${imageUrl + titleDetail.backdrop_path}`;
-
-	console.log("detail desde detail", titleDetail);
-
-	useEffect(() => {
-		setId(id);
+    
+    useEffect(() => {
+        setId(id);        
 	}, [id]);
 
+ 
 	return (
 		<div className="cardDetail" style={{ backgroundImage: `url(${img2})` }}>
 			<div className="cardDetail__container container">
@@ -40,8 +39,8 @@ const CardDetail = () => {
 
                         <ul>
                             {titleDetail.runtime && <li>Duración: {titleDetail.runtime}</li>}
-                            {titleDetail.sopoken_language && <li>Idioma: {titleDetail.sopoken_language}</li>}
-                            {titleDetail.original_language && <li>Idioma original: {titleDetail.original_language}</li>}
+                            {titleDetail.spoken_languages && <li>Idioma: {titleDetail.spoken_languages[0].english_name}</li>}
+                            {/* https://api.themoviedb.org/3/configuration/languages?api_key=ec740ed26fd6ef4871dca3a51b00aa7a */}                            
                         </ul>
                         <ul>
                             {titleDetail.vpte_count && <li>Cantidad de votos: {titleDetail.vote_count}</li>}

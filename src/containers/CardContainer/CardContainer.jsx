@@ -10,19 +10,19 @@ const CardContainer = () => {
 	const search = useRef(null);
 	const debounce = useRef();
 	const handleQuerySearch = (e) => {
-    debounce.current && clearTimeout( debounce.current )
-    debounce.current = setTimeout(()=>{
-      setQuery(e.target.value);
-    }, 350)
+		debounce.current && clearTimeout(debounce.current);
+		debounce.current = setTimeout(() => {
+			setQuery(e.target.value);
+		}, 350);
 	};
 	const handlePaginate = () => {
 		setPaginate((prev) => prev + 12);
 	};
 
 	const handleBorrar = (e) => {
-		e.preventDefault();		
-    	search.current.value = ''
-		setQuery('')
+		e.preventDefault();
+		search.current.value = "";
+		setQuery("");
 	};
 	return (
 		<div className="card-container">
@@ -37,12 +37,14 @@ const CardContainer = () => {
 									onChange={(e) => handleQuerySearch(e)}
 									id="search"
 									className="search"
-                  ref={search}
+									ref={search}
 								/>
 								<button
 									className="borrar"
 									onClick={handleBorrar}
-								>X</button>
+								>
+									X
+								</button>
 							</div>
 						</label>
 					</form>

@@ -5,7 +5,7 @@ const language = 'es-MX'
 
 
 export const getByQuery = (query:string, setQueryResults:any, setNotFound:any) => {
-    axios.get(`https://api.themoviedb.org/3/search/movie?api_key=${api_key}&query=${query}&language=es-MX`)
+    axios.get(`https://api.themoviedb.org/3/search/movie?api_key=${api_key}&query=${query}&language=${language}`)
     .then((response) => {
       if(response.data.results.length > 0) {
         setQueryResults(response.data.results)
@@ -40,4 +40,13 @@ export const getById = (setTitleDetail:any, id:string) => {
     axios.get(`https://api.themoviedb.org/3/movie/${id}?api_key=${api_key}&language=${language}`)
     .then((response) => setTitleDetail(response.data))    
     .catch((err) => console.log(err))    
+}
+
+export const getLang = (setLang: any) => {
+  axios
+			.get(
+				`https://api.themoviedb.org/3/configuration/languages?api_key=${api_key}`
+			)
+			.then((response) => setLang(response.data))
+			.catch((err) => console.log(err));
 }
