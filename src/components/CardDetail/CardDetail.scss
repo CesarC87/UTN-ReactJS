@@ -2,12 +2,30 @@
   background-repeat: no-repeat;
   background-size: cover;
   margin: 3% 0;
+  display: flex;
+  position:relative;
+
+  &::before {
+    background-image: linear-gradient(to right, rgb(0 0 0 / 89%) 150px, rgba(32, 44, 95, 0.84) 100%);;
+    width: 100%;
+    height: 100%;
+    content:'';
+    position: absolute;
+    top:0;
+    left:0;
+    z-index: 1;
+  }
+  &__container{
+    position: relative;
+    z-index: 5;
+    display: flex;
+    padding: 20px;
+    gap: 40px;
+  }
   &__izq {
-    width: 30%;
     &--imgContainer {
-      height: 500px;
-      width: 333px;
-      margin: 10% 0 10% 35%;
+      display:block;
+      width: 100%;
     //   box-shadow: var(--shadow-elevation-medium);
       border-radius: 10px;
       & img {
@@ -18,11 +36,65 @@
     }
   }
   &__der {
-    width: 70%;
+    color: white;
+    padding-right: 10em;
+    .title-area{
+      padding: 0px 0px 20px 0px;
+       div{
+        display:flex;
+        justify-content:space-between;
+       }
+       h3{
+         font-size: 2.75em;
+         color: white;
+         text-align: left;
+         padding-bottom: 20px;
+       }
+       p{
+         font-size: 18px;
+         color: white;
+         text-align: left;
+         font-weight: 300;
+       }
+    }
+    .detail-area{
+      padding: 20px 0;
+      h4{
+        font-size: 1.45em;
+        padding-bottom: 20px;
+        color: var(--orange);
+        padding: 1.5em 4em;
+        background-color: var(--light-blue);
+        border-radius: 20px;
+        margin-bottom: 40px;
+        font-weight: 400;
+        &::before{
+          content: '"';
+        }
+        &::after{
+          content: '"';
+        }
+        &::before,
+        &::after{
+          font-size:1.45em;
+          font-weight: 700;
+        }
+      }
+      ul{
+        padding: 20px 0; 
+        display: flex;
+        gap: 40px;
+        li{
+          color: white;
+          font-size: 14px;
+        }
+      }
+    }
+    p{
+      font-size: 18px;
+      color: white;
+      text-align: left;
+      font-weight: 300;
+    }
   }
-}
-.filter {
-  background-image: linear-gradient(to right, rgb(0 0 0 / 89%) 150px, rgba(32, 44, 95, 0.84) 100%);;
-  width: 100%;
-  display: flex;
 }

@@ -48,7 +48,7 @@ const ContextProvider = ( { children } ) => {
 
   useEffect(() => {
     console.log('id', id)
-    axios.get(`https://api.themoviedb.org/3/movie/${id}?api_key=${api_key}`)
+    axios.get(`https://api.themoviedb.org/3/movie/${id}?api_key=${api_key}&language=${language}`)
     .then((response) => setTitleDetail(response.data))    
     .catch((err) => console.log(err))    
   }, [id])
