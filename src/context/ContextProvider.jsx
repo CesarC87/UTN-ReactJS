@@ -1,17 +1,19 @@
 import React, { useState, useEffect, useReducer } from "react";
 import { Context } from "./Context";
 import axios from "axios";
-import {
-	getByQuery,
-	getTopRated,
-	getTrending,
-	getSeries,
-	getById,
-	getLang,
-} from "../services/get";
+import { moviesReducer, initialStateMovies} from "../Reducers/moviesReducer";
+import useGet from "../services/useGet";
 
 const ContextProvider = ({ children }) => {
-	// const [ state, dispatch ] = useReducer(reducer, initialState)
+
+  const { getByQuery,
+    getTopRated,
+    getTrending,
+    getSeries,
+    getById,
+    getLang, api_key, language } = useGet()
+
+	const [ movies, dispatchMovies ] = useReducer(moviesReducer, initialStateMovies)
 
 	const [query, setQuery] = useState("");
 	const [queryResults, setQueryResults] = useState([]);
@@ -25,7 +27,17 @@ const ContextProvider = ({ children }) => {
 	const imageUrl = "https://image.tmdb.org/t/p/original";
 
 	useEffect(() => {
-		getByQuery(query, setQueryResults, setNotFound);
+		axios.get(`https://api.themoviedb.org/3/search/movie?api_key=${api_key}&query=${query}&language=${language}`)
+    .then((response) => {
+      if(response.data.results.length > 0) {
+        dispatchMovies( { type:'getByQuery', payload: response.data.results } )
+        setNotFound(false)        
+      }else{
+        setQueryResults([])
+        setNotFound(true)
+      }       
+    })
+    .catch((err) => console.log(err))   
 		query === "" && setQueryResults([]);
 	}, [query]);
 
@@ -57,6 +69,7 @@ const ContextProvider = ({ children }) => {
 				setId,
 				titleDetail,
 				lang,
+        dispatchMovies
 			}}
 		>
 			{children}
