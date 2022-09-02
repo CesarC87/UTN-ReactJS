@@ -35,7 +35,6 @@ const ContextProvider = ( { children } ) => {
     getById(setTitleDetail, id)    
   }, [id])
     
-
   return (
     <Context.Provider value={{ queryResults, imageUrl, setQuery, populares, topRated, series, notFound , setId, titleDetail }}>
             { children }
