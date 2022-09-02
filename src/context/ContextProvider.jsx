@@ -23,11 +23,14 @@ const ContextProvider = ({ children }) => {
 	const [series, setSeries] = useState([]);
 	const [notFound, setNotFound] = useState(false);
 	const [titleDetail, setTitleDetail] = useState(false);
-	const [ìdGenres, setIdGenres] = useState('');
+	const [idGenres, setIdGenres] = useState('');
 	const [id, setId] = useState();
 	const [lang, setLang] = useState(null);
 	const [generos, setGeneros] = useState([]);
 	const imageUrl = "https://image.tmdb.org/t/p/original";
+
+  console.log('idGenres desde conte', idGenres)
+  console.log('queryGenres desde conte', queryGenres)
 
 	useEffect(() => {
 		getByQuery(query, setQueryResults, setNotFound);
@@ -35,9 +38,9 @@ const ContextProvider = ({ children }) => {
 	}, [query]);
 
 	useEffect(() => {
-		getByQueryGenres(queryGenres, setQueryGenres, setNotFound, setIdGenres, ìdGenres);
+		getByQueryGenres(setQueryGenres, setNotFound, idGenres);
 		queryGenres === "" && setQueryGenres([]);
-	}, [queryGenres]);
+	}, [idGenres]);
 
 
 	useEffect(() => {
@@ -74,6 +77,7 @@ const ContextProvider = ({ children }) => {
 				generos,
 				setQueryGenres,
 				setIdGenres,
+        queryGenres
 			}}
 		>
 			{children}

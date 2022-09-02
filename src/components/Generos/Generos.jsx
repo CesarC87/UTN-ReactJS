@@ -14,16 +14,15 @@ const Generos = () => {
 	const debounce = useRef();
 
 	const handleQueryGenres = (e) => {
-		console.log('funca', e.target.value)
-		debounce.current && clearTimeout(debounce.current);
-		debounce.current = setTimeout(() => {
-			setIdGenres(e.target.value);
-		}, 350);
+		console.log('funca', e.target.value)		
+		setIdGenres(e.target.value);
 	};
 
 	const handlePaginate = () => {
 		setPaginate((prev) => prev + 12);
 	};
+
+	console.log('queryGenres',queryGenres)
 
 	return (
 		<section>
@@ -34,7 +33,7 @@ const Generos = () => {
 				})}
 			</select>
 
-			{queryGenres.length > 0 ? (
+			{(queryGenres && queryGenres.length > 0) ? (
 				<div className="container">
 					<div className="card-container-list row">
 						{queryGenres.slice(0, paginate).map((film) => {

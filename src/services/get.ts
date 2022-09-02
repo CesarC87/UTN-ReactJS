@@ -18,7 +18,7 @@ export const getByQuery = (query:string, setQueryResults:any, setNotFound:any) =
     .catch((err) => console.log(err))   
 }
 
-export const getByQueryGenres = (setQueryGenres:any, setNotFound:any, idGenres: any) => {
+export const getByQueryGenres = (setQueryGenres:any, setNotFound:any, idGenres: string) => {
   console.log('idGenres:',idGenres)
   axios.get(`https://api.themoviedb.org/3/discover/movie?api_key=${api_key}&with_genres=${idGenres}&language=${language}`)
   .then((response) => {
