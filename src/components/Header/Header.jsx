@@ -7,8 +7,12 @@ const Header = () => {
 	// Logo
 	// Menu
   const active = {
-    border: '1px solid gray',
-    color: 'darkgray'
+    border: '1px solid white',
+    color: 'white',
+    padding: '5% 10%',
+    borderRadius: '15px',
+    background: '#17174d',
+    fontWeight: '400'
   }
 	return (
 		<header className="header">
