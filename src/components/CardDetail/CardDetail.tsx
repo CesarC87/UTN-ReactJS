@@ -17,7 +17,7 @@ const CardDetail = () => {
 		setId(id);
 	}, [id]);
 
-    // console.log('lang:',lang)
+ console.log('lang:',lang)
 
     const handleLang = (i: string) =>{
         lang.map((item: any)=>{
@@ -55,9 +55,9 @@ const CardDetail = () => {
                             {titleDetail.runtime && <li>Duración: {titleDetail.runtime}</li>}
                             {titleDetail.sopoken_language && <li>Idioma: {titleDetail.sopoken_language}</li>}
                             {/* https://api.themoviedb.org/3/configuration/languages?api_key=ec740ed26fd6ef4871dca3a51b00aa7a */}
-                            {titleDetail.original_language && 
+                            {/* {titleDetail.original_language && 
                                 <li>Idioma original: {language}</li>
-                            }
+                            } */}
                         </ul>
                         <ul>
                             {titleDetail.vpte_count && <li>Cantidad de votos: {titleDetail.vote_count}</li>}

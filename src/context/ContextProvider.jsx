@@ -7,6 +7,7 @@ import {
 	getTrending,
 	getSeries,
 	getById,
+	getLang,
 } from "../services/get";
 
 const ContextProvider = ({ children }) => {
@@ -35,15 +36,11 @@ const ContextProvider = ({ children }) => {
 		getTrending(setPopulares);
 		//Series
 		getSeries(setSeries);
+		// Language
+		getLang(setLang);
 	}, []);
 
 	useEffect(() => {
-		axios
-			.get(
-				`https://api.themoviedb.org/3/configuration/languages?api_key=${api_key}`
-			)
-			.then((response) => setLang(response.data))
-			.catch((err) => console.log(err));
 		getById(setTitleDetail, id);
 	}, [id]);
 
