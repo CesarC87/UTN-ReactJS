@@ -3,25 +3,30 @@ import { Context } from "./Context";
 import axios from "axios";
 import {
 	getByQuery,
+	getByQueryGenres,
 	getTopRated,
 	getTrending,
 	getSeries,
 	getById,
 	getLang,
+	getGeneros,
 } from "../services/get";
 
 const ContextProvider = ({ children }) => {
 	// const [ state, dispatch ] = useReducer(reducer, initialState)
 
 	const [query, setQuery] = useState("");
+	const [queryGenres, setQueryGenres] = useState("");
 	const [queryResults, setQueryResults] = useState([]);
 	const [populares, setPopulares] = useState([]);
 	const [topRated, setTopRated] = useState([]);
 	const [series, setSeries] = useState([]);
 	const [notFound, setNotFound] = useState(false);
 	const [titleDetail, setTitleDetail] = useState(false);
+	const [ìdGenres, setIdGenres] = useState('');
 	const [id, setId] = useState();
 	const [lang, setLang] = useState(null);
+	const [generos, setGeneros] = useState([]);
 	const imageUrl = "https://image.tmdb.org/t/p/original";
 
 	useEffect(() => {
@@ -30,14 +35,23 @@ const ContextProvider = ({ children }) => {
 	}, [query]);
 
 	useEffect(() => {
+		getByQueryGenres(queryGenres, setQueryGenres, setNotFound, setIdGenres, ìdGenres);
+		queryGenres === "" && setQueryGenres([]);
+	}, [queryGenres]);
+
+
+	useEffect(() => {
 		//Mejores rankeadas
 		getTopRated(setTopRated);
 		//Tendencias
 		getTrending(setPopulares);
 		//Series
 		getSeries(setSeries);
+		//Generos
+		getGeneros(setGeneros);
 		// Language
 		getLang(setLang);
+
 	}, []);
 
 	useEffect(() => {
@@ -57,6 +71,9 @@ const ContextProvider = ({ children }) => {
 				setId,
 				titleDetail,
 				lang,
+				generos,
+				setQueryGenres,
+				setIdGenres,
 			}}
 		>
 			{children}

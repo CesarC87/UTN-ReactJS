@@ -1,57 +1,36 @@
-import React, { useContext, useState, useRef, ChangeEvent } from "react";
-import Card from "../../components/Card/Card";
+import React, { useContext, useState, useRef } from "react";
+import Card from "../Card/Card";
+import "./Generos.scss";
+
 import { Context } from "../../context/Context";
 
-import "./CardContainer.scss";
-
-const CardContainer = () => {
-	const { setQuery, queryResults, imageUrl, notFound } = useContext(Context);
+const Generos = () => {
+	const { queryResults, generos, populares, series, setQueryGenres, notFound  } = useContext(Context);
+	const { imageUrl } = useContext(Context);
 	const [paginate, setPaginate] = useState(12);
-	const search = useRef(null);
+
+	const genres = generos.genres;
 	const debounce = useRef();
 
 	const handleQuerySearch = (e) => {
 		debounce.current && clearTimeout(debounce.current);
 		debounce.current = setTimeout(() => {
-			setQuery(e.target.value);
+			setQueryGenres(e.target.value);
 		}, 350);
 	};
-	
+
 	const handlePaginate = () => {
 		setPaginate((prev) => prev + 12);
 	};
 
-	const handleBorrar = (e) => {
-		e.preventDefault();
-		search.current.value = "";
-		setQuery("");
-	};
 	return (
-		<div className="card-container">
-			<div className="busador">
-				<div className="container">
-					<form action="" id="form">
-						<label>
-							<span>Encontrá tu película favorita</span>
-							<div>
-								<input
-									type="search"
-									onChange={(e) => handleQuerySearch(e)}
-									id="search"
-									className="search"
-									ref={search}
-								/>
-								<button
-									className="borrar"
-									onClick={handleBorrar}
-								>
-									X
-								</button>
-							</div>
-						</label>
-					</form>
-				</div>
-			</div>
+		<section>
+			<select className="select">
+				<option value="0">Seleccione el género</option>
+				{genres.map((item)=>{
+					return <option key={item.id} value={item.id}>{item.name}</option>
+				})}
+			</select>
 
 			{queryResults.length > 0 ? (
 				<div className="container">
@@ -86,8 +65,9 @@ const CardContainer = () => {
 					</div>
 				)
 			)}
-		</div>
+			
+		</section>
 	);
 };
 
-export default CardContainer;
+export default Generos;

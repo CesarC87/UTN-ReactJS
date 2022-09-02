@@ -36,21 +36,21 @@ const Header = () => {
 								</NavLink>
 								</li>
 								<li>
-								<NavLink to="/a" style={({ isActive }) => {
+								<NavLink to="/generos" style={({ isActive }) => {
 									return isActive ? active : null}}
 									>Géneros
 								</NavLink>
 								</li>
 								<li>
-								<NavLink to="/b" style={({ isActive }) => {
+								<NavLink to="/peliculas" style={({ isActive }) => {
 									return isActive ? active : null}}
 									>Películas
 								</NavLink>
 								</li>
 								<li>
-								<NavLink to="/c" style={({ isActive }) => {
+								<NavLink to="/series" style={({ isActive }) => {
 									return isActive ? active : null}}
-									>Destacadas
+									>Series
 								</NavLink>
 								</li>
 							</ul>

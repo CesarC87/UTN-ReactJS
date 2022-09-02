@@ -16,7 +16,7 @@ const CardDetail = () => {
 		setId(id);
 	}, [id]);
 
-	console.log("Peli: ", titleDetail.production_countries);
+	// console.log("Peli: ", titleDetail.production_countries);
 
 	return (
 		<div className="cardDetail" style={{ backgroundImage: `url(${img2})` }}>
