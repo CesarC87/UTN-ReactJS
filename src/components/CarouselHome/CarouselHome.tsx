@@ -5,23 +5,23 @@ import { Context } from "../../context/Context";
 import Card from "../Card/Card";
 import "./CarouselHome.scss";
 
-const CarouselHome = ({listado, titulo} : {listado: any, titulo: any}) => {
+const CarouselHome = ({ listado, titulo }: { listado: any; titulo: any }) => {
 	const responsive = {
 		desktop: {
-		  breakpoint: { max: 3000, min: 1024 },
-		  items: 6,
-		  slidesToSlide: 1 // optional, default to 1.
+			breakpoint: { max: 3000, min: 1024 },
+			items: 6,
+			slidesToSlide: 1, // optional, default to 1.
 		},
 		tablet: {
-		  breakpoint: { max: 1024, min: 464 },
-		  items: 4,
-		  slidesToSlide: 1 // optional, default to 1.
+			breakpoint: { max: 1024, min: 464 },
+			items: 4,
+			slidesToSlide: 1, // optional, default to 1.
 		},
 		mobile: {
-		  breakpoint: { max: 464, min: 0 },
-		  items: 2,
-		  slidesToSlide: 1 // optional, default to 1.
-		}
+			breakpoint: { max: 464, min: 0 },
+			items: 2,
+			slidesToSlide: 1, // optional, default to 1.
+		},
 	};
 
 	const { imageUrl } = useContext(Context);
@@ -53,13 +53,11 @@ const CarouselHome = ({listado, titulo} : {listado: any, titulo: any}) => {
 					>
 						{listado?.slice(0, 10).map((film: any) => {
 							return (
-								<div>
-									<Card
-										film={film}
-										imageUrl={imageUrl}
-										key={film.id}
-									/>
-								</div>
+								<Card
+									film={film}
+									imageUrl={imageUrl}
+									key={film.id}
+								/>
 							);
 						})}
 					</Carousel>
