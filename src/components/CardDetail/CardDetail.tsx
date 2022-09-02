@@ -7,15 +7,28 @@ import { url } from "inspector";
 
 const CardDetail = () => {
 	const { id } = useParams();
-	const { setId, titleDetail, imageUrl } = useContext(Context);
+	const { setId, titleDetail, imageUrl, lang } = useContext(Context);
 	const img = `${imageUrl + titleDetail.poster_path}`;
 	const img2 = `${imageUrl + titleDetail.backdrop_path}`;
 
-	console.log("detail desde detail", titleDetail);
+	// console.log("detail desde detail", titleDetail);
 
 	useEffect(() => {
 		setId(id);
 	}, [id]);
+
+    // console.log('lang:',lang)
+
+    const handleLang = (i: string) =>{
+        lang.map((item: any)=>{
+            if(item.iso_639_1 == i){
+                console.log(item.english_name)
+                return item.english_name;
+            }
+        })
+    }
+
+    const language = handleLang(titleDetail.original_language);
 
 	return (
 		<div className="cardDetail" style={{ backgroundImage: `url(${img2})` }}>
@@ -41,7 +54,10 @@ const CardDetail = () => {
                         <ul>
                             {titleDetail.runtime && <li>Duración: {titleDetail.runtime}</li>}
                             {titleDetail.sopoken_language && <li>Idioma: {titleDetail.sopoken_language}</li>}
-                            {titleDetail.original_language && <li>Idioma original: {titleDetail.original_language}</li>}
+                            {/* https://api.themoviedb.org/3/configuration/languages?api_key=ec740ed26fd6ef4871dca3a51b00aa7a */}
+                            {titleDetail.original_language && 
+                                <li>Idioma original: {language}</li>
+                            }
                         </ul>
                         <ul>
                             {titleDetail.vpte_count && <li>Cantidad de votos: {titleDetail.vote_count}</li>}

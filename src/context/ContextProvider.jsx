@@ -12,6 +12,7 @@ const ContextProvider = ( { children } ) => {
   const [ notFound, setNotFound ] = useState(false)
   const [ titleDetail, setTitleDetail ] = useState(false)
   const [ id, setId ] = useState()
+  const [lang, setLang] = useState(null)
   const imageUrl = 'https://image.tmdb.org/t/p/original'
   const api_key = "ec740ed26fd6ef4871dca3a51b00aa7a"
   const language = 'es-MX'
@@ -47,16 +48,20 @@ const ContextProvider = ( { children } ) => {
   },[])
 
   useEffect(() => {
-    console.log('id', id)
+    // console.log('id', id)
     axios.get(`https://api.themoviedb.org/3/movie/${id}?api_key=${api_key}&language=${language}`)
     .then((response) => setTitleDetail(response.data))    
     .catch((err) => console.log(err))    
   }, [id])
   
-  
+  useEffect(() => {
+    axios.get(`https://api.themoviedb.org/3/configuration/languages?api_key=${api_key}`)
+    .then((response) =>setLang(response.data))
+    .catch((err) => console.log(err))  
+  }, [])
 
   return (
-    <Context.Provider value={{ queryResults, imageUrl, setQuery, populares, topRated, series, notFound , setId, titleDetail }}>
+    <Context.Provider value={{ queryResults, imageUrl, setQuery, populares, topRated, series, notFound , setId, titleDetail, lang }}>
             { children }
     </Context.Provider>
   )
