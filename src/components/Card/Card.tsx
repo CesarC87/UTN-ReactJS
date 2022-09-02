@@ -14,6 +14,8 @@ const Card = ({ film, imageUrl, type }: { film: any; imageUrl: any, type:string 
 	const vote_color = { color: color };
 	const titleId = film.id;
 
+	console.log('film: ', film);
+
 	return (
 		<Link to={`/title/${titleId}/${type}`}>
 			<div
@@ -45,10 +47,17 @@ const Card = ({ film, imageUrl, type }: { film: any; imageUrl: any, type:string 
 				<div className="card-content">
 					<h4>
 						{film.title}
+						{film.name}
 						{film.release_date &&
-							film.real_release_date !== undefined && (
+							film.release_date !== undefined && (
 								<span>
 									&nbsp;({film.release_date.substring(0, 4)})
+								</span>
+							)}
+						{film.first_air_date &&
+							film.first_air_date !== undefined && (
+								<span>
+									&nbsp;({film.first_air_date.substring(0, 4)})
 								</span>
 							)}
 					</h4>
