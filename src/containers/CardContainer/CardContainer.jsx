@@ -9,7 +9,6 @@ const CardContainer = () => {
 	const [paginate, setPaginate] = useState(12);
 	const search = useRef(null);
 	const debounce = useRef();
-
 	const handleQuerySearch = (e) => {
     debounce.current && clearTimeout( debounce.current )
     debounce.current = setTimeout(()=>{
