@@ -50,10 +50,14 @@ export const getSeries = (setSeries:any) => {
     .then((response) => setSeries(response.data.results))
     .catch((err) => console.log(err))
 }
+export const getPeliculas = (setPeliculas:any) => {
+  axios.get(`https://api.themoviedb.org/3/movie/popular?api_key=${api_key}&language=${language}&page=1`)
+  .then((response) => setPeliculas(response.data.results))
+  .catch((err) => console.log(err))
+}
 
-
-export const getById = (setTitleDetail:any, id:string) => {
-  axios.get(`https://api.themoviedb.org/3/movie/${id}?api_key=${api_key}&language=${language}`)
+export const getById = (setTitleDetail:any, id:string, type?: 'movie') => {
+  axios.get(`https://api.themoviedb.org/3/${type}/${id}?api_key=${api_key}&language=${language}`)
   .then((response) => setTitleDetail(response.data))    
   .catch((err) => console.log(err))    
 }

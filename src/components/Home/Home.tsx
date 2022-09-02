@@ -17,14 +17,16 @@ const Home = () => {
 						<CarouselHome
 							listado={topRated}
 							titulo="Populares en MovieFun"
+							type='movie'
 						/>
 						<hr />
 						<CarouselHome
 							listado={populares}
 							titulo="Tendencia esta semana"
+							type='movie'
 						/>
 						<hr />
-						<CarouselHome listado={series} titulo="Series" />
+						<CarouselHome listado={series} titulo="Series" type='tv' />
 					</div>
 				</div>
 			)}		

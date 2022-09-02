@@ -10,6 +10,7 @@ import {
 	getById,
 	getLang,
 	getGeneros,
+	getPeliculas,
 } from "../services/get";
 
 const ContextProvider = ({ children }) => {
@@ -20,17 +21,19 @@ const ContextProvider = ({ children }) => {
 	const [queryResults, setQueryResults] = useState([]);
 	const [populares, setPopulares] = useState([]);
 	const [topRated, setTopRated] = useState([]);
+	const [peliculas, setPeliculas] = useState([]);
 	const [series, setSeries] = useState([]);
 	const [notFound, setNotFound] = useState(false);
 	const [titleDetail, setTitleDetail] = useState(false);
-	const [idGenres, setIdGenres] = useState('');
+	const [idGenres, setIdGenres] = useState("");
 	const [id, setId] = useState();
+	const [type, setType] = useState();
 	const [lang, setLang] = useState(null);
 	const [generos, setGeneros] = useState([]);
 	const imageUrl = "https://image.tmdb.org/t/p/original";
 
-  console.log('idGenres desde conte', idGenres)
-  console.log('queryGenres desde conte', queryGenres)
+	// console.log("idGenres desde conte", idGenres);
+	// console.log("queryGenres desde conte", queryGenres);
 
 	useEffect(() => {
 		getByQuery(query, setQueryResults, setNotFound);
@@ -41,7 +44,6 @@ const ContextProvider = ({ children }) => {
 		getByQueryGenres(setQueryGenres, setNotFound, idGenres);
 		queryGenres === "" && setQueryGenres([]);
 	}, [idGenres]);
-
 
 	useEffect(() => {
 		//Mejores rankeadas
@@ -54,11 +56,12 @@ const ContextProvider = ({ children }) => {
 		getGeneros(setGeneros);
 		// Language
 		getLang(setLang);
-
+		//peliculas
+		getPeliculas(setPeliculas);
 	}, []);
 
 	useEffect(() => {
-		getById(setTitleDetail, id);
+		getById(setTitleDetail, id, type);
 	}, [id]);
 
 	return (
@@ -72,12 +75,14 @@ const ContextProvider = ({ children }) => {
 				series,
 				notFound,
 				setId,
+				setType,
 				titleDetail,
 				lang,
 				generos,
 				setQueryGenres,
 				setIdGenres,
-        queryGenres
+				peliculas,
+				queryGenres,
 			}}
 		>
 			{children}

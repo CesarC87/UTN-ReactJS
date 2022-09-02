@@ -5,7 +5,7 @@ import { Context } from "../../context/Context";
 import Card from "../Card/Card";
 import "./CarouselHome.scss";
 
-const CarouselHome = ({ listado, titulo }: { listado: any; titulo: any }) => {
+const CarouselHome = ({ listado, titulo, type }: { listado: any; titulo: any, type: string }) => {
 	const responsive = {
 		desktop: {
 			breakpoint: { max: 3000, min: 1024 },
@@ -57,6 +57,7 @@ const CarouselHome = ({ listado, titulo }: { listado: any; titulo: any }) => {
 									film={film}
 									imageUrl={imageUrl}
 									key={film.id}
+									type={type}
 								/>
 							);
 						})}

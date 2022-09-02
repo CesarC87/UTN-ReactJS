@@ -5,7 +5,15 @@ import "./Generos.scss";
 import { Context } from "../../context/Context";
 
 const Generos = () => {
-	const { queryGenres, generos, populares, series, setQueryGenres, notFound, setIdGenres  } = useContext(Context);
+	const {
+		queryGenres,
+		generos,
+		populares,
+		series,
+		setQueryGenres,
+		notFound,
+		setIdGenres,
+	} = useContext(Context);
 	const { imageUrl } = useContext(Context);
 	const [paginate, setPaginate] = useState(12);
 
@@ -14,7 +22,7 @@ const Generos = () => {
 	const debounce = useRef();
 
 	const handleQueryGenres = (e) => {
-		console.log('funca', e.target.value)		
+		console.log("funca", e.target.value);
 		setIdGenres(e.target.value);
 	};
 
@@ -22,18 +30,31 @@ const Generos = () => {
 		setPaginate((prev) => prev + 12);
 	};
 
-	console.log('queryGenres',queryGenres)
+	console.log("queryGenres", queryGenres);
 
 	return (
 		<section>
-			<select className="select" onChange={(e) => handleQueryGenres(e)} ref={search}>
-				<option value="0">Seleccione el género</option>
-				{genres.map((item)=>{
-					return <option key={item.id} value={item.id}>{item.name}</option>
-				})}
-			</select>
+			<div className="select-area">
+				<label>
+					<span>Seleccione un género: </span>
+				<select
+					className="select"
+					onChange={(e) => handleQueryGenres(e)}
+					ref={search}
+					>
+					<option value="0">Seleccione el género</option>
+					{genres.map((item) => {
+						return (
+							<option key={item.id} value={item.id}>
+								{item.name}
+							</option>
+						);
+					})}
+				</select>
+					</label>
+			</div>
 
-			{(queryGenres && queryGenres.length > 0) ? (
+			{queryGenres && queryGenres.length > 0 ? (
 				<div className="container">
 					<div className="card-container-list row">
 						{queryGenres.slice(0, paginate).map((film) => {
@@ -46,6 +67,7 @@ const Generos = () => {
 										film={film}
 										imageUrl={imageUrl}
 										key={film.id}
+										type='movie'
 									/>
 								</div>
 							);
@@ -66,7 +88,6 @@ const Generos = () => {
 					</div>
 				)
 			)}
-			
 		</section>
 	);
 };

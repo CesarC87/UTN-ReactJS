@@ -7,16 +7,17 @@ import { url } from "inspector";
 import { isTemplateExpression } from "typescript";
 
 const CardDetail = () => {
-	const { id } = useParams();
-	const { setId, titleDetail, imageUrl } = useContext(Context);
+	const { id, type } = useParams();
+	const { setId, titleDetail, imageUrl, setType } = useContext(Context);
 	const img = `${imageUrl + titleDetail.poster_path}`;
 	const img2 = `${imageUrl + titleDetail.backdrop_path}`;
 
 	useEffect(() => {
 		setId(id);
-	}, [id]);
+		setType(type)
+	}, [id, type]);
 
-	// console.log("Peli: ", titleDetail.production_countries);
+	console.log("Peli: ", titleDetail);
 
 	return (
 		<div className="cardDetail" style={{ backgroundImage: `url(${img2})` }}>
@@ -28,12 +29,19 @@ const CardDetail = () => {
 				</div>
 				<div className="cardDetail__der col-12 col-md-8 col-lg-9">
 					<div className="title-area">
-						<h3>{titleDetail.title}</h3>
+						{titleDetail.title && <h3>{titleDetail.title}</h3>}
+						{titleDetail.name && <h3>{titleDetail.name}</h3>}
 						<div>
-							<p>{titleDetail.original_title}</p>
+							{titleDetail.original_title && <p>{titleDetail.original_title}</p>}
+							{titleDetail.original_name && <p>{titleDetail.original_name}</p>}
 							{titleDetail.release_date && (
 								<p>
 									Fecha de estreno: {titleDetail.release_date}
+								</p>
+							)}
+							{titleDetail.first_air_date && (
+								<p>
+									Fecha de estreno: {titleDetail.first_air_date}
 								</p>
 							)}
 						</div>

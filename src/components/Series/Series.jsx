@@ -1,11 +1,11 @@
 import React, { useContext, useState, useRef } from "react";
 import Card from "../Card/Card";
-import "./Peliculas.scss";
+import "./Series.scss";
 
 import { Context } from "../../context/Context";
 
-const Peliculas = () => {
-	const { setQuery, queryResults, imageUrl, notFound, peliculas } = useContext(Context);
+const Series = () => {
+	const { setQuery, queryResults, imageUrl, notFound, series } = useContext(Context);
 	const [paginate, setPaginate] = useState(12);
 	
 	const handlePaginate = () => {
@@ -14,11 +14,11 @@ const Peliculas = () => {
 
 	return (
 		<div className="card-container">
-			{peliculas.length > 0 ? (
+			{series.length > 0 ? (
 				<div className="container">
-					<h3>Películas</h3>
+					<h3>Series</h3>
 					<div className="card-container-list row">
-						{peliculas.slice(0, paginate).map((film) => {
+						{series.slice(0, paginate).map((film) => {
 							return (
 								<div
 									className="col-6 col-md-4 col-lg-2"
@@ -28,14 +28,14 @@ const Peliculas = () => {
 										film={film}
 										imageUrl={imageUrl}
 										key={film.id}
-										type='movie'
+										type='tv'
 									/>
 								</div>
 							);
 						})}
 					</div>
 					<div className="card-container-footer">
-						{paginate < peliculas.length && (
+						{paginate < series.length && (
 							<button onClick={handlePaginate}>
 								Más títulos
 							</button>
@@ -54,4 +54,4 @@ const Peliculas = () => {
 };
 
 
-export default Peliculas;
+export default Series;
