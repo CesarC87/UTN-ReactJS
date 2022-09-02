@@ -7,12 +7,12 @@ import "./CardContainer.scss";
 const CardContainer = () => {
 	const { setQuery, queryResults, imageUrl, notFound } = useContext(Context);
 
-	const [paginate, setPaginate] = useState(12);  
-  const debounce = useRef<NodeJS.Timeout>()  
+	const [paginate, setPaginate] = useState(12);
+	const search = useRef(null);
+	const debounce = useRef();
 
-  console.log(queryResults)
 
-	const handleQuerySearch = (e: ChangeEvent<HTMLInputElement>) => {
+	const handleQuerySearch = (e) => {
     debounce.current && clearTimeout( debounce.current )
     debounce.current = setTimeout(()=>{
       setQuery(e.target.value);
@@ -22,9 +22,10 @@ const CardContainer = () => {
 		setPaginate((prev) => prev + 12);
 	};
 
-	const handleBorrar = (e: any) => {
-		e.preventDefault();
-		// search.current.value = '';
+	const handleBorrar = (e) => {
+		e.preventDefault();		
+    	search.current.value = ''
+		setQuery('')
 	};
 	return (
 		<div className="card-container">
@@ -39,6 +40,7 @@ const CardContainer = () => {
 									onChange={(e) => handleQuerySearch(e)}
 									id="search"
 									className="search"
+                  ref={search}
 								/>
 								<button
 									className="borrar"
@@ -53,7 +55,7 @@ const CardContainer = () => {
 			{queryResults.length > 0 ? (
 				<div className="container">
 					<div className="card-container-list row">
-						{queryResults.slice(0, paginate).map((film: any) => {
+						{queryResults.slice(0, paginate).map((film) => {
 							return (
 								<div
 									className="col-6 col-md-4 col-lg-2"
