@@ -11,15 +11,15 @@ import NoPage from "../components/NoPage/NoPage";
 
 const Router = () => {
 	return (
-		<BrowserRouter basename="/UTN-ReactJS/">
+		<BrowserRouter>
 			<Header />
 			<Routes>
 				<Route path="/" element={<Home />} />
-					<Route path="/title/:id/:type" element={<CardDetail />} />
-					<Route path="/generos/" element={<Generos />} />
-					<Route path="/peliculas/" element={<Peliculas />} />
-					<Route path="/series/" element={<Series />} />
-					<Route path="*" element={<NoPage />} />
+				<Route path="/title/:id/:type" element={<CardDetail />} />
+				<Route path="/generos/" element={<Generos />} />
+				<Route path="/peliculas/" element={<Peliculas />} />
+				<Route path="/series/" element={<Series />} />
+				<Route path="*" element={<NoPage />} />
 			</Routes>
 			<Footer />
 		</BrowserRouter>
