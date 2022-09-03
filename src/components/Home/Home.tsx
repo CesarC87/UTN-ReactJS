@@ -6,25 +6,25 @@ import { Context } from "../../context/Context";
 import CarouselHome from "../CarouselHome/CarouselHome";
 
 const Home = () => {
-	const { queryResults, topRated, populares, series } = useContext(Context);
+	const { movies, topRated, populares, series } = useContext(Context);
 
 	return (
 		<section>		
 			<CardContainer />
-			{queryResults.length === 0 && (
+			{movies?.queryResults.length === 0 && (
 				<div className="carousel-area">
 					<div className="container">
 						<CarouselHome
-							listado={topRated}
+							listado={movies.topRated}
 							titulo="Populares en MovieFun"
 						/>
 						<hr />
 						<CarouselHome
-							listado={populares}
+							listado={movies.populares}
 							titulo="Tendencia esta semana"
 						/>
 						<hr />
-						<CarouselHome listado={series} titulo="Series" />
+						<CarouselHome listado={movies.series} titulo="Series" />
 					</div>
 				</div>
 			)}		

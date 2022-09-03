@@ -1,11 +1,12 @@
 import React, { useContext, useState, useRef, ChangeEvent } from "react";
 import Card from "../../components/Card/Card";
 import { Context } from "../../context/Context";
+import { moviesActions } from "../../Actions/moviesActions";
 
 import "./CardContainer.scss";
 
 const CardContainer = () => {
-	const { setQuery, queryResults, imageUrl, notFound } = useContext(Context);
+	const { imageUrl, movies, dispatchMovies } = useContext(Context);
 	const [paginate, setPaginate] = useState(12);
 	const search = useRef(null);
 	const debounce = useRef();
@@ -13,7 +14,7 @@ const CardContainer = () => {
 	const handleQuerySearch = (e) => {
 		debounce.current && clearTimeout(debounce.current);
 		debounce.current = setTimeout(() => {
-			setQuery(e.target.value);
+			dispatchMovies( { type:moviesActions.setQuery, payload: e.target.value } )
 		}, 350);
 	};
 	
@@ -24,8 +25,9 @@ const CardContainer = () => {
 	const handleBorrar = (e) => {
 		e.preventDefault();
 		search.current.value = "";
-		setQuery("");
+		dispatchMovies( { type:moviesActions.resetQuery } )
 	};
+	
 	return (
 		<div className="card-container">
 			<div className="busador">
@@ -53,10 +55,10 @@ const CardContainer = () => {
 				</div>
 			</div>
 
-			{queryResults.length > 0 ? (
+			{movies.queryResults.length > 0 ? (
 				<div className="container">
 					<div className="card-container-list row">
-						{queryResults.slice(0, paginate).map((film) => {
+						{movies.queryResults.slice(0, paginate).map((film) => {
 							return (
 								<div
 									className="col-6 col-md-4 col-lg-2"
@@ -72,7 +74,7 @@ const CardContainer = () => {
 						})}
 					</div>
 					<div className="card-container-footer">
-						{paginate < queryResults.length && (
+						{paginate < movies.queryResults.length && (
 							<button onClick={handlePaginate}>
 								Más títulos
 							</button>
@@ -80,7 +82,7 @@ const CardContainer = () => {
 					</div>
 				</div>
 			) : (
-				notFound && (
+				movies.notFound && (
 					<div className="notFound">
 						No se encontraron resultados para tu búsqueda
 					</div>

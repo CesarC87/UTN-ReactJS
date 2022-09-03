@@ -1,104 +1,56 @@
 import React, { useState, useEffect, useReducer } from "react";
 import { Context } from "./Context";
-import axios from "axios";
 import { moviesReducer, initialStateMovies} from "../Reducers/moviesReducer";
-import useGet from "../services/useGet";
-import {
-	getByQuery,
-	getByQueryGenres,
-	getTopRated,
-	getTrending,
-	getSeries,
-	getById,
-	getLang,
-	getGeneros,
-} from "../services/get";
+// import {	
+// 	// getByQueryGenres,	
+// 	getGeneros,
+// } from "../services/get";
+import { getTopRated , getTrending, getSeries, getById, getByQuery, imageUrl , getByQueryGenres, getGeneros } from '../services/useGet'
+import { moviesActions } from "../Actions/moviesActions";
 
 const ContextProvider = ({ children }) => {
 
-  const { getByQuery,
-    getTopRated,
-    getTrending,
-    getSeries,
-    getById,
-    getLang, api_key, language } = useGet()
-
 	const [ movies, dispatchMovies ] = useReducer(moviesReducer, initialStateMovies)
 
-	const [query, setQuery] = useState("");
-	const [queryGenres, setQueryGenres] = useState("");
-	const [queryResults, setQueryResults] = useState([]);
-	const [populares, setPopulares] = useState([]);
-	const [topRated, setTopRated] = useState([]);
-	const [series, setSeries] = useState([]);
-	const [notFound, setNotFound] = useState(false);
-	const [titleDetail, setTitleDetail] = useState(false);
 	const [idGenres, setIdGenres] = useState('');
-	const [id, setId] = useState();
-	const [lang, setLang] = useState(null);
-	const [generos, setGeneros] = useState([]);
-	const imageUrl = "https://image.tmdb.org/t/p/original";
-
-  console.log('idGenres desde conte', idGenres)
-  console.log('queryGenres desde conte', queryGenres)
-
-	useEffect(() => {
-		axios.get(`https://api.themoviedb.org/3/search/movie?api_key=${api_key}&query=${query}&language=${language}`)
-    .then((response) => {
-      if(response.data.results.length > 0) {
-        dispatchMovies( { type:'getByQuery', payload: response.data.results } )
-        setNotFound(false)        
-      }else{
-        setQueryResults([])
-        setNotFound(true)
-      }       
-    })
-    .catch((err) => console.log(err))   
-		query === "" && setQueryResults([]);
-	}, [query]);
+	const [id, setId] = useState();	
+	
+	useEffect(() => {	 
+		movies.query === "" && dispatchMovies( { type: moviesActions.resetQuery} )
+		getByQuery(movies.query, dispatchMovies)
+	}, [movies.query]);
 
 	useEffect(() => {
-		getByQueryGenres(setQueryGenres, setNotFound, idGenres);
-		queryGenres === "" && setQueryGenres([]);
+		getByQueryGenres(dispatchMovies, idGenres);
+		movies.queryGenres === "" && dispatchMovies( { type: moviesActions.setQueryGenres} );
 	}, [idGenres]);
 
 
-	useEffect(() => {
+	useEffect(() => {		
 		//Mejores rankeadas
-		getTopRated(setTopRated);
+		getTopRated(dispatchMovies);
 		//Tendencias
-		getTrending(setPopulares);
+		getTrending(dispatchMovies);
 		//Series
-		getSeries(setSeries);
+		getSeries(dispatchMovies);
 		//Generos
-		getGeneros(setGeneros);
+		getGeneros(dispatchMovies);
 		// Language
-		getLang(setLang);
-
+		// getLang(setLang);
 	}, []);
 
 	useEffect(() => {
-		getById(setTitleDetail, id);
+		getById(dispatchMovies, id);
 	}, [id]);
 
 	return (
 		<Context.Provider
-			value={{
-				queryResults,
-				imageUrl,
-				setQuery,
-				populares,
-				topRated,
-				series,
-				notFound,
-				setId,
-				titleDetail,
-				lang,
-        dispatchMovies,
-				generos,
-				setQueryGenres,
+			value={{				
+				imageUrl,								
+				setId,		
+        		dispatchMovies,			
 				setIdGenres,
-        queryGenres
+				movies
 			}}
 		>
 			{children}
