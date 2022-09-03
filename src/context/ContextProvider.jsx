@@ -1,10 +1,6 @@
 import React, { useState, useEffect, useReducer } from "react";
 import { Context } from "./Context";
 import { moviesReducer, initialStateMovies} from "../Reducers/moviesReducer";
-// import {	
-// 	// getByQueryGenres,	
-// 	getGeneros,
-// } from "../services/get";
 import { getTopRated , getTrending, getSeries, getById, getByQuery, imageUrl , getByQueryGenres, getGeneros } from '../services/useGet'
 import { moviesActions } from "../Actions/moviesActions";
 
@@ -14,6 +10,7 @@ const ContextProvider = ({ children }) => {
 
 	const [idGenres, setIdGenres] = useState('');
 	const [id, setId] = useState();	
+	const [type, setType] = useState();
 	
 	useEffect(() => {	 
 		movies.query === "" && dispatchMovies( { type: moviesActions.resetQuery} )
@@ -40,7 +37,7 @@ const ContextProvider = ({ children }) => {
 	}, []);
 
 	useEffect(() => {
-		getById(dispatchMovies, id);
+		getById(dispatchMovies, id, type);
 	}, [id]);
 
 	return (
@@ -50,7 +47,8 @@ const ContextProvider = ({ children }) => {
 				setId,		
         		dispatchMovies,			
 				setIdGenres,
-				movies
+				movies,
+				setType
 			}}
 		>
 			{children}

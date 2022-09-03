@@ -6,16 +6,18 @@ import { Context } from "../../context/Context";
 import { url } from "inspector";
 
 const CardDetail = () => {
-	const { id } = useParams();
-	const { setId, imageUrl , movies} = useContext(Context);
+	
+	const { id, type } = useParams();
+	const { setId, titleDetail, imageUrl, setType , movies} = useContext(Context);
 	const img = `${imageUrl + movies.titleDetail.poster_path}`;
 	const img2 = `${imageUrl + movies.titleDetail.backdrop_path}`;
 
 	useEffect(() => {
 		setId(id);
-	}, [id]);
+		setType(type)
+	}, [id, type]);
 
-	// console.log("Peli: ", titleDetail.production_countries);
+	console.log("Peli: ", titleDetail);
 
 	return (
 		<div className="cardDetail" style={{ backgroundImage: `url(${img2})` }}>
@@ -27,12 +29,19 @@ const CardDetail = () => {
 				</div>
 				<div className="cardDetail__der col-12 col-md-8 col-lg-9">
 					<div className="title-area">
-						<h3>{movies.titleDetail.title}</h3>
+						{movies.titleDetail.title && <h3>{movies.titleDetail.title}</h3>}
+						{movies.titleDetail.name && <h3>{movies.titleDetail.name}</h3>}
 						<div>
-							<p>{movies.titleDetail.original_title}</p>
+							{movies.titleDetail.original_title && <p>{movies.titleDetail.original_title}</p>}
+							{movies.titleDetail.original_name && <p>{movies.titleDetail.original_name}</p>}
 							{movies.titleDetail.release_date && (
 								<p>
 									Fecha de estreno: {movies.titleDetail.release_date}
+								</p>
+							)}
+							{movies.titleDetail.first_air_date && (
+								<p>
+									Fecha de estreno: {movies.titleDetail.first_air_date}
 								</p>
 							)}
 						</div>

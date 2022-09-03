@@ -18,18 +18,33 @@ const Generos = () => {
 	
 	const handlePaginate = () => {
 		setPaginate((prev) => prev + 12);
-	};	
-	
+	};
+
+	console.log("queryGenres", queryGenres);
+
 	return (
 		<section>
-			<select className="select" onChange={(e) => handleQueryGenres(e)} ref={search}>
-				<option value="0">Seleccione el género</option>
-				{genres?.map((item)=>{
-					return <option key={item.id} value={item.id}>{item.name}</option>
-				})}
-			</select>
+			<div className="select-area">
+				<label>
+					<span>Seleccione un género: </span>
+				<select
+					className="select"
+					onChange={(e) => handleQueryGenres(e)}
+					ref={search}
+					>
+					<option value="0">Seleccione el género</option>
+					{genres.map((item) => {
+						return (
+							<option key={item.id} value={item.id}>
+								{item.name}
+							</option>
+						);
+					})}
+				</select>
+					</label>
+			</div>
 
-			{(queryGenres && queryGenres.length > 0) ? (
+			{queryGenres && queryGenres.length > 0 ? (
 				<div className="container">
 					<div className="card-container-list row">
 						{queryGenres.slice(0, paginate).map((film) => {
@@ -42,6 +57,7 @@ const Generos = () => {
 										film={film}
 										imageUrl={imageUrl}
 										key={film.id}
+										type='movie'
 									/>
 								</div>
 							);
@@ -62,7 +78,6 @@ const Generos = () => {
 					</div>
 				)
 			)}
-			
 		</section>
 	);
 };

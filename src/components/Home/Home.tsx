@@ -6,7 +6,7 @@ import { Context } from "../../context/Context";
 import CarouselHome from "../CarouselHome/CarouselHome";
 
 const Home = () => {
-	const { movies, topRated, populares, series } = useContext(Context);
+	const { movies } = useContext(Context);
 
 	return (
 		<section>		
@@ -17,14 +17,16 @@ const Home = () => {
 						<CarouselHome
 							listado={movies.topRated}
 							titulo="Populares en MovieFun"
+							type='movie'
 						/>
 						<hr />
 						<CarouselHome
 							listado={movies.populares}
 							titulo="Tendencia esta semana"
+							type='movie'
 						/>
 						<hr />
-						<CarouselHome listado={movies.series} titulo="Series" />
+						<CarouselHome listado={movies.series} titulo="Series" type='tv' />
 					</div>
 				</div>
 			)}		
@@ -32,20 +34,4 @@ const Home = () => {
 	);
 };
 
-//   return (
-//     <section>      
-//       <CardContainer />
-//       {
-//         queryResults.length === 0 ?
-//         <>
-//           <Popular/>
-//           <Trending/>
-//           <Series/>
-//         </> : <div></div>
-//       }      
-//     </section>
-//   )
-// }
-
-// export default Home
 export default Home;
