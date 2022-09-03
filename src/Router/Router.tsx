@@ -11,7 +11,7 @@ import NoPage from "../components/NoPage/NoPage";
 
 const Router = () => {
 	return (
-		<BrowserRouter>
+		<BrowserRouter basename="/UTN-ReactJS/">
 			<Header />
 			<Routes>
 				<Route path="/" element={<Home />} />
