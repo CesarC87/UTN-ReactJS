@@ -1,11 +1,11 @@
-import React, { useContext, useState, useRef } from "react";
+import React, { useContext, useState } from "react";
 import Card from "../Card/Card";
 import "./Series.scss";
 
 import { Context } from "../../context/Context";
 
 const Series = () => {
-	const { setQuery, queryResults, imageUrl, notFound, series } = useContext(Context);
+	const { imageUrl, notFound, series } = useContext(Context);
 	const [paginate, setPaginate] = useState(12);
 	
 	const handlePaginate = () => {

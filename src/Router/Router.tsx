@@ -8,6 +8,7 @@ import Generos from "../components/Generos/Generos";
 import Peliculas from "../components/Peliculas/Peliculas";
 import Series from "../components/Series/Series";
 import NoPage from "../components/NoPage/NoPage";
+import QuienesSomos from "../components/QuienesSomos/QuienesSomos";
 
 const Router = () => {
 	return (
@@ -19,6 +20,7 @@ const Router = () => {
 				<Route path="/generos/" element={<Generos />} />
 				<Route path="/peliculas/" element={<Peliculas />} />
 				<Route path="/series/" element={<Series />} />
+				<Route path="/quienes-somos/" element={<QuienesSomos />} />
 				<Route path="*" element={<NoPage />} />
 			</Routes>
 			<Footer />

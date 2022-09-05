@@ -1,5 +1,6 @@
 import React from "react";
-import logoFooter from '../../assets/moviefun-logo-blue.png';
+import { NavLink } from "react-router-dom";
+import logoFooter from "../../assets/moviefun-logo-blue.png";
 import "./Footer.scss";
 
 const Footer = () => {
@@ -18,16 +19,28 @@ const Footer = () => {
 					</div>
 					<div className="col-6 col-md-4">
 						<ul>
-							<li>Género</li>
-							<li>Película</li>
-							<li>Serie</li>
+							<li>
+								<NavLink to="/generos">Géneros</NavLink>
+							</li>
+							<li>
+								<NavLink to="/peliculas">Películas</NavLink>
+							</li>
+							<li>
+								<NavLink to="/series">Series</NavLink>
+							</li>
 						</ul>
 					</div>
 					<div className="col-6 col-md-4">
 						<ul>
-							<li>¿Quienes somos?</li>
-							<li>Contacto</li>
-							<li>Redes</li>
+							<li>
+								<NavLink to="/quienes-somos">¿Quiénes somos?</NavLink>
+							</li>
+							<li>
+								<NavLink to="/">Contacto</NavLink>
+							</li>
+							<li>
+								<NavLink to="/">Instagram</NavLink>
+							</li>
 						</ul>
 					</div>
 				</div>

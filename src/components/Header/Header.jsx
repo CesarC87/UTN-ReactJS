@@ -1,5 +1,5 @@
 import React from "react";
-import { Link , NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import logo from '../../assets/moviefun-logo.png';
 import "./Header.scss";
 
@@ -9,7 +9,7 @@ const Header = () => {
   const active = {
     border: '1px solid white',
     color: 'white',
-    padding: '5% 10%',
+    padding: '0.5em 2em',
     borderRadius: '15px',
     background: '#17174d',
     fontWeight: '400'

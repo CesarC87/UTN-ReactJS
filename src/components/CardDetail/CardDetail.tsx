@@ -3,21 +3,20 @@ import "./CardDetail.scss";
 import { useParams } from "react-router";
 import { useEffect } from "react";
 import { Context } from "../../context/Context";
-import { url } from "inspector";
 
 const CardDetail = () => {
 	
 	const { id, type } = useParams();
-	const { setId, titleDetail, imageUrl, setType , movies} = useContext(Context);
+	const { setId, imageUrl, setType , movies} = useContext(Context);
 	const img = `${imageUrl + movies.titleDetail.poster_path}`;
 	const img2 = `${imageUrl + movies.titleDetail.backdrop_path}`;
 
 	useEffect(() => {
 		setId(id);
 		setType(type)
-	}, [id, type]);
+	}, [id, type, setId, setType]);
 
-	console.log("Peli: ", titleDetail);
+	// console.log("Peli: ", titleDetail);
 
 	return (
 		<div className="cardDetail" style={{ backgroundImage: `url(${img2})` }}>

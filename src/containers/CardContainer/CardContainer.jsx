@@ -1,4 +1,4 @@
-import React, { useContext, useState, useRef, ChangeEvent } from "react";
+import React, { useContext, useState, useRef } from "react";
 import Card from "../../components/Card/Card";
 import { Context } from "../../context/Context";
 import { moviesActions } from "../../Actions/moviesActions";
