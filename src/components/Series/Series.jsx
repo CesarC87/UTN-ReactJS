@@ -5,7 +5,7 @@ import "./Series.scss";
 import { Context } from "../../context/Context";
 
 const Series = () => {
-	const { imageUrl, notFound, series } = useContext(Context);
+	const { imageUrl, notFound, movies } = useContext(Context);
 	const [paginate, setPaginate] = useState(12);
 	
 	const handlePaginate = () => {
@@ -14,11 +14,11 @@ const Series = () => {
 
 	return (
 		<div className="card-container">
-			{series.length > 0 ? (
+			{movies.series.length > 0 ? (
 				<div className="container">
 					<h3>Series</h3>
 					<div className="card-container-list row">
-						{series.slice(0, paginate).map((film) => {
+						{movies.series.slice(0, paginate).map((film) => {
 							return (
 								<div
 									className="col-6 col-md-4 col-lg-2"
@@ -35,7 +35,7 @@ const Series = () => {
 						})}
 					</div>
 					<div className="card-container-footer">
-						{paginate < series.length && (
+						{paginate < movies.series.length && (
 							<button onClick={handlePaginate}>
 								Más títulos
 							</button>
