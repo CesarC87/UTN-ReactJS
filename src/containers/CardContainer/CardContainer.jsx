@@ -6,7 +6,7 @@ import { moviesActions } from "../../Actions/moviesActions";
 import "./CardContainer.scss";
 
 const CardContainer = () => {
-	const { imageUrl, movies, dispatchMovies } = useContext(Context);
+	const { imageUrl, movies, dispatchMovies, moviesRTK } = useContext(Context);
 	const [paginate, setPaginate] = useState(12);
 	const search = useRef(null);
 	const debounce = useRef();
@@ -55,10 +55,10 @@ const CardContainer = () => {
 				</div>
 			</div>
 
-			{movies.queryResults.length > 0 ? (
+			{moviesRTK.queryResults.length > 0 ? (
 				<div className="container">
 					<div className="card-container-list row">
-						{movies.queryResults.slice(0, paginate).map((film) => {
+						{moviesRTK.queryResults.slice(0, paginate).map((film) => {
 							return (
 								<div
 									className="col-6 col-md-4 col-lg-2"
@@ -74,7 +74,7 @@ const CardContainer = () => {
 						})}
 					</div>
 					<div className="card-container-footer">
-						{paginate < movies.queryResults.length && (
+						{paginate < moviesRTK.queryResults.length && (
 							<button onClick={handlePaginate}>
 								Más títulos
 							</button>

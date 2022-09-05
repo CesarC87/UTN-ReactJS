@@ -1,20 +1,22 @@
 
 import axios from "axios"
 import { moviesActions } from '../Actions/moviesActions';
+import { getByQueryRtk } from "../Store/Slices/moviesSlices";
 export const api_key = "ec740ed26fd6ef4871dca3a51b00aa7a"
 export const language = 'es-MX'
 export const imageUrl = "https://image.tmdb.org/t/p/original";    
 
   // Get de data a partir de búsqueda del usuario
-  export const getByQuery = (query, dispatchMovies) => {
+  export const getByQuery = (query, dispatch) => {
     axios.get(`https://api.themoviedb.org/3/search/movie?api_key=${api_key}&query=${query}&language=${language}`)
     .then((response) => {
       if(response.data.results.length > 0) {
-        dispatchMovies( { type: moviesActions.getByQuery , payload: response.data.results } )
-        dispatchMovies( { type: moviesActions.setNotFound , payload: false } )        
+        // dispatchMovies( { type: moviesActions.getByQuery , payload: response.data.results } )
+        dispatch(getByQueryRtk(response.data.results))
+        // dispatchMovies( { type: moviesActions.setNotFound , payload: false } )        
       }else{
-        dispatchMovies( { type: moviesActions.resetQuery} )
-        dispatchMovies( { type: moviesActions.setNotFound , payload: true } ) 
+        // dispatchMovies( { type: moviesActions.resetQuery} )
+        // dispatchMovies( { type: moviesActions.setNotFound , payload: true } ) 
       }       
     })
     .catch((err) => console.log(err))   
