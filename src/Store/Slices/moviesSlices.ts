@@ -33,8 +33,11 @@ export const moviesSlice = createSlice({
   reducers: {
     getByQueryRtk: (state, action: PayloadAction<any>) => {             
             state.queryResults = [...action.payload]           
+    },
+    resetQueryRtk: (state) => {             
+            state.queryResults = []           
     }
   }
 })
 // Action creators are generated for each case reducer function
-export const { getByQueryRtk } = moviesSlice.actions
+export const { getByQueryRtk, resetQueryRtk } = moviesSlice.actions

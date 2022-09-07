@@ -1,7 +1,7 @@
 
 import axios from "axios"
 import { moviesActions } from '../Actions/moviesActions';
-import { getByQueryRtk } from "../Store/Slices/moviesSlices";
+import { getByQueryRtk, resetQueryRtk } from "../Store/Slices/moviesSlices";
 export const api_key = "ec740ed26fd6ef4871dca3a51b00aa7a"
 export const language = 'es-MX'
 export const imageUrl = "https://image.tmdb.org/t/p/original";    
@@ -11,12 +11,13 @@ export const imageUrl = "https://image.tmdb.org/t/p/original";
     axios.get(`https://api.themoviedb.org/3/search/movie?api_key=${api_key}&query=${query}&language=${language}`)
     .then((response) => {
       if(response.data.results.length > 0) {
-        // dispatchMovies( { type: moviesActions.getByQuery , payload: response.data.results } )
-        dispatch(getByQueryRtk(response.data.results))
+        // dispatchMovies( { type: moviesActions.getByQuery , payload: response.data.results } )   --> Con useReducer
         // dispatchMovies( { type: moviesActions.setNotFound , payload: false } )        
+        dispatch(getByQueryRtk(response.data.results))                                    
       }else{
         // dispatchMovies( { type: moviesActions.resetQuery} )
-        // dispatchMovies( { type: moviesActions.setNotFound , payload: true } ) 
+        // dispatchMovies( { type: moviesActions.setNotFound , payload: true } )  --> Con useReducer
+        dispatch(resetQueryRtk())                                    
       }       
     })
     .catch((err) => console.log(err))   
