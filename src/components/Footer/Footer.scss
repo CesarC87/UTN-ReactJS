@@ -7,4 +7,17 @@
       margin-bottom:20px
     }
   }
+  ul{
+
+    a{
+      font-family: var(font-secundario);
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--dark-blue);
+      text-decoration: none;
+    }
+    a.active{
+      color: var(--orange);
+    }
+  }
 }

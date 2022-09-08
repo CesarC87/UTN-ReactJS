@@ -20,7 +20,7 @@ const ContextProvider = ({ children }) => {
 	useEffect(() => {
 		getByQueryGenres(dispatchMovies, idGenres);
 		movies.queryGenres === "" && dispatchMovies( { type: moviesActions.setQueryGenres} );
-	}, [idGenres]);
+	}, [idGenres, movies.queryGenres]);
 
 
 	useEffect(() => {		
@@ -38,7 +38,7 @@ const ContextProvider = ({ children }) => {
 
 	useEffect(() => {
 		getById(dispatchMovies, id, type);
-	}, [id]);
+	}, [id,  type]);
 
 	return (
 		<Context.Provider
