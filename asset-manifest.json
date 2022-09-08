@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/UTN-ReactJS/static/css/main.798fb5e3.css",
-    "main.js": "/UTN-ReactJS/static/js/main.84f29744.js",
+    "main.js": "/UTN-ReactJS/static/js/main.76c55287.js",
     "static/js/787.69af1a8b.chunk.js": "/UTN-ReactJS/static/js/787.69af1a8b.chunk.js",
     "static/media/404.jpg": "/UTN-ReactJS/static/media/404.ec2773d498630411f27d.jpg",
     "static/media/cesar.jpg": "/UTN-ReactJS/static/media/cesar.cd98950d1aafc3568821.jpg",
@@ -14,11 +14,11 @@
     "static/media/revicons.woff": "/UTN-ReactJS/static/media/revicons.e8746a624ed098489406.woff",
     "index.html": "/UTN-ReactJS/index.html",
     "main.798fb5e3.css.map": "/UTN-ReactJS/static/css/main.798fb5e3.css.map",
-    "main.84f29744.js.map": "/UTN-ReactJS/static/js/main.84f29744.js.map",
+    "main.76c55287.js.map": "/UTN-ReactJS/static/js/main.76c55287.js.map",
     "787.69af1a8b.chunk.js.map": "/UTN-ReactJS/static/js/787.69af1a8b.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.798fb5e3.css",
-    "static/js/main.84f29744.js"
+    "static/js/main.76c55287.js"
   ]
 }
