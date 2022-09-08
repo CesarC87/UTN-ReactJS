@@ -19,7 +19,7 @@ const Header = () => {
 			<div className="container">
 				<div className="row">
 					<div className="col-12 col-md-6 col-lg-4 logo">
-						<a href="/" title="Moviefun">
+						<a href="/UTN-ReactJS" title="Moviefun">
 							<img
 								src={logo}
 								alt="Moviefun - Tu cine en casa"
