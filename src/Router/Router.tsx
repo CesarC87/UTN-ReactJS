@@ -12,7 +12,7 @@ import QuienesSomos from "../components/QuienesSomos/QuienesSomos";
 
 const Router = () => {
 	return (
-		<BrowserRouter>
+		<BrowserRouter basename="/UTN-ReactJS">
 			<Header />
 			<Routes>
 				<Route path="/" element={<Home />} />

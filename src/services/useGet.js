@@ -1,6 +1,5 @@
 
 import axios from "axios"
-import { moviesActions } from '../Actions/moviesActions';
 import { getByQueryRtk, 
          resetQueryRtk, 
          getByQueryGenresRtk, 

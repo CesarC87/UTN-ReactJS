@@ -1,7 +1,6 @@
 import React, { useContext, useState, useRef } from "react";
 import Card from "../../components/Card/Card";
 import { Context } from "../../context/Context";
-import { moviesActions } from "../../Actions/moviesActions";
 import { setQueryRtk, resetQueryRtk } from '../../Store/Slices/moviesSlice'
 
 import "./CardContainer.scss";
