@@ -5,20 +5,22 @@ import "./Series.scss";
 import { Context } from "../../context/Context";
 
 const Series = () => {
-	const { imageUrl, notFound, series } = useContext(Context);
+	const { imageUrl, notFound, seriesRTK } = useContext(Context);
 	const [paginate, setPaginate] = useState(12);
 	
 	const handlePaginate = () => {
 		setPaginate((prev) => prev + 12);
 	};
 
+	console.log('series',seriesRTK)
+
 	return (
 		<div className="card-container">
-			{series.length > 0 ? (
+			{seriesRTK.series.length > 0 ? (
 				<div className="container">
 					<h3>Series</h3>
 					<div className="card-container-list row">
-						{series.slice(0, paginate).map((film) => {
+						{seriesRTK.series.slice(0, paginate).map((film) => {
 							return (
 								<div
 									className="col-6 col-md-4 col-lg-2"
@@ -35,7 +37,7 @@ const Series = () => {
 						})}
 					</div>
 					<div className="card-container-footer">
-						{paginate < series.length && (
+						{paginate < seriesRTK.series.length && (
 							<button onClick={handlePaginate}>
 								Más títulos
 							</button>
@@ -43,7 +45,7 @@ const Series = () => {
 					</div>
 				</div>
 			) : (
-				notFound && (
+				seriesRTK.notFound && (
 					<div className="notFound">
 						No se encontraron resultados para tu búsqueda
 					</div>

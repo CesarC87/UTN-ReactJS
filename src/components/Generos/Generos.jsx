@@ -4,12 +4,12 @@ import "./Generos.scss";
 import { Context } from "../../context/Context";
 
 const Generos = () => {
-	const { setIdGenres , movies } = useContext(Context);
+	const { setIdGenres , moviesRTK } = useContext(Context);
 	const { imageUrl } = useContext(Context);
 	const [paginate, setPaginate] = useState(12);
 	
-	const genres = movies.generos.genres;
-	const queryGenres = movies.queryGenres
+	const genres = moviesRTK.generos.genres;
+	const queryGenres = moviesRTK.queryGenres
 	const search = useRef(null);
 
 	const handleQueryGenres = (e) => {			
@@ -72,7 +72,7 @@ const Generos = () => {
 					</div>
 				</div>
 			) : (
-				movies.notFound && (
+				moviesRTK.notFound && (
 					<div className="notFound">
 						No se encontraron resultados para tu búsqueda
 					</div>

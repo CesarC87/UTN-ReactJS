@@ -2,11 +2,12 @@ import React, { useContext, useState, useRef } from "react";
 import Card from "../../components/Card/Card";
 import { Context } from "../../context/Context";
 import { moviesActions } from "../../Actions/moviesActions";
+import { setQueryRtk, resetQueryRtk } from '../../Store/Slices/moviesSlice'
 
 import "./CardContainer.scss";
 
 const CardContainer = () => {
-	const { imageUrl, movies, dispatchMovies, moviesRTK } = useContext(Context);
+	const { imageUrl, dispatch, moviesRTK } = useContext(Context);
 	const [paginate, setPaginate] = useState(12);
 	const search = useRef(null);
 	const debounce = useRef();
@@ -14,7 +15,7 @@ const CardContainer = () => {
 	const handleQuerySearch = (e) => {
 		debounce.current && clearTimeout(debounce.current);
 		debounce.current = setTimeout(() => {
-			dispatchMovies( { type:moviesActions.setQuery, payload: e.target.value } )
+			dispatch( setQueryRtk(e.target.value) )
 		}, 350);
 	};
 	
@@ -25,9 +26,9 @@ const CardContainer = () => {
 	const handleBorrar = (e) => {
 		e.preventDefault();
 		search.current.value = "";
-		dispatchMovies( { type:moviesActions.resetQuery } )
+		dispatch( resetQueryRtk() )
 	};
-	
+	console.log('not found desde container', moviesRTK.notFound)
 	return (
 		<div className="card-container">
 			<div className="busador">
@@ -81,8 +82,8 @@ const CardContainer = () => {
 						)}
 					</div>
 				</div>
-			) : (
-				movies.notFound && (
+			) : (				
+				moviesRTK.notFound && (
 					<div className="notFound">
 						No se encontraron resultados para tu búsqueda
 					</div>

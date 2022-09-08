@@ -7,16 +7,16 @@ import { Context } from "../../context/Context";
 const CardDetail = () => {
 	
 	const { id, type } = useParams();
-	const { setId, imageUrl, setType , movies} = useContext(Context);
-	const img = `${imageUrl + movies.titleDetail.poster_path}`;
-	const img2 = `${imageUrl + movies.titleDetail.backdrop_path}`;
+	const { setId, imageUrl, setType , moviesRTK} = useContext(Context);
+	const img = `${imageUrl + moviesRTK.titleDetail.poster_path}`;
+	const img2 = `${imageUrl + moviesRTK.titleDetail.backdrop_path}`;
+
+	const movies = moviesRTK
 
 	useEffect(() => {
 		setId(id);
 		setType(type)
-	}, [id, type, setId, setType]);
-
-	// console.log("Peli: ", titleDetail);
+	}, [id, type, setId, setType]);	
 
 	return (
 		<div className="cardDetail" style={{ backgroundImage: `url(${img2})` }}>

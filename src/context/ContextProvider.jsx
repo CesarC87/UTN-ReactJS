@@ -1,62 +1,56 @@
-import React, { useState, useEffect, useReducer } from "react";
+import React, { useState, useEffect } from "react";
 import { Context } from "./Context";
-import { moviesReducer, initialStateMovies} from "../Reducers/moviesReducer";
 import { getTopRated , getTrending, getSeries, getById, imageUrl , getByQueryGenres, getGeneros, getByQuery } from '../services/useGet'
-import { moviesActions } from "../Actions/moviesActions";
 import { useSelector, useDispatch } from 'react-redux'
-import { getByQueryRtk } from "../Store/Slices/moviesSlices";
+import { resetQueryRtk} from "../Store/Slices/moviesSlice";
 
 const ContextProvider = ({ children }) => {
 
 	const moviesRTK = useSelector((state) => state.movies)
-	const dispatch = useDispatch()
-
-	console.log('moviesRTK desde context - rtk', moviesRTK)
-
-	const [ movies, dispatchMovies ] = useReducer(moviesReducer, initialStateMovies)
+	const seriesRTK = useSelector((state) => state.series)
+	const dispatch = useDispatch()	
 
 	const [idGenres, setIdGenres] = useState('');
 	const [id, setId] = useState();	
 	const [type, setType] = useState();
 	
 	useEffect(() => {	 
-		movies.query === "" && dispatchMovies( { type: moviesActions.resetQuery} )
-		getByQuery(movies.query, dispatch)
-	}, [movies.query]);
+		moviesRTK.query === "" && dispatch(resetQueryRtk())        
+		getByQuery(moviesRTK.query, dispatch)
+	}, [moviesRTK.query]);
 
 	useEffect(() => {
-		getByQueryGenres(dispatchMovies, idGenres);
-		movies.queryGenres === "" && dispatchMovies( { type: moviesActions.setQueryGenres} );
-	}, [idGenres, movies.queryGenres]);
+		getByQueryGenres(dispatch, idGenres);
+	}, [idGenres]);
 
 
 	useEffect(() => {		
 		//Mejores rankeadas
-		getTopRated(dispatchMovies);
+		getTopRated(dispatch);
 		//Tendencias
-		getTrending(dispatchMovies);
+		getTrending(dispatch);
 		//Series
-		getSeries(dispatchMovies);
+		getSeries(dispatch);
 		//Generos
-		getGeneros(dispatchMovies);
+		getGeneros(dispatch);
 		// Language
 		// getLang(setLang);
 	}, []);
 
 	useEffect(() => {
-		getById(dispatchMovies, id, type);
+		getById(dispatch, id, type);
 	}, [id,  type]);
 
 	return (
 		<Context.Provider
 			value={{				
 				imageUrl,								
-				setId,		
-        		dispatchMovies,			
-				setIdGenres,
-				movies,
+				setId,		        				
+				setIdGenres,				
 				setType,
-				moviesRTK
+				moviesRTK,
+				seriesRTK,
+				dispatch
 			}}
 		>
 			{children}
