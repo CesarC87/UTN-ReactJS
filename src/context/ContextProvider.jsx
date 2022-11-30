@@ -18,7 +18,7 @@ const ContextProvider = ({ children }) => {
 	}, [movies.query]);
 
 	useEffect(() => {
-		getByQueryGenres(dispatchMovies, idGenres);
+		idGenres !== '' && getByQueryGenres(dispatchMovies, idGenres);
 		movies.queryGenres === "" && dispatchMovies( { type: moviesActions.setQueryGenres} );
 	}, [idGenres, movies.queryGenres]);
 
@@ -37,7 +37,7 @@ const ContextProvider = ({ children }) => {
 	}, []);
 
 	useEffect(() => {
-		getById(dispatchMovies, id, type);
+		id && getById(dispatchMovies, id, type);
 	}, [id,  type]);
 
 	return (

@@ -51,13 +51,14 @@ const CarouselHome = ({ listado, titulo, type }: { listado: any; titulo: any, ty
 						showDots={false}
 						swipeable={true}
 					>
-						{listado?.slice(0, 10).map((film: any) => {
+						{listado?.slice(0, 10).map((film: any, index:number) => {
 							return (
 								<Card
 									film={film}
 									imageUrl={imageUrl}
 									key={film.id}
 									type={type}
+									index={index}
 								/>
 							);
 						})}

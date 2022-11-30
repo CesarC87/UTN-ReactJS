@@ -15,7 +15,7 @@ export const getByQuery = (query:string, setQueryResults:any, setNotFound:any) =
         setNotFound(true)
       }       
     })
-    .catch((err) => console.log(err))   
+    .catch((err) => console.log('getByQuery',err))   
 }
 
 export const getByQueryGenres = (setQueryGenres:any, setNotFound:any, idGenres: string) => {
@@ -30,36 +30,36 @@ export const getByQueryGenres = (setQueryGenres:any, setNotFound:any, idGenres: 
       setNotFound(true)
     }       
   })
-  .catch((err) => console.log(err))   
+  .catch((err) => console.log('getByQueryGenres',err))   
 }
 
 export const getTopRated = (setTopRated:any) => {
     axios.get(`https://api.themoviedb.org/3/movie/top_rated?api_key=${api_key}&language=${language}&page=1`)
     .then((response) => setTopRated(response.data.results))
-    .catch((err) => console.log(err))
+    .catch((err) => console.log('getTopRated',err))
 }
 
 export const getTrending = (setPopulares:any) => {
     axios.get(`https://api.themoviedb.org/3/movie/popular?api_key=${api_key}&language=${language}&page=1`)
     .then((response) => setPopulares(response.data.results))
-    .catch((err) => console.log(err))
+    .catch((err) => console.log('getTrending',err))
 }
 
 export const getSeries = (setSeries:any) => {
     axios.get(`https://api.themoviedb.org/3/tv/popular?api_key=${api_key}&language=${language}&page=1`)
     .then((response) => setSeries(response.data.results))
-    .catch((err) => console.log(err))
+    .catch((err) => console.log('getSeries',err))
 }
 export const getPeliculas = (setPeliculas:any) => {
   axios.get(`https://api.themoviedb.org/3/movie/popular?api_key=${api_key}&language=${language}&page=1`)
   .then((response) => setPeliculas(response.data.results))
-  .catch((err) => console.log(err))
+  .catch((err) => console.log('getPeliculas',err))
 }
 
 export const getById = (setTitleDetail:any, id:string, type?: 'movie') => {
   axios.get(`https://api.themoviedb.org/3/${type}/${id}?api_key=${api_key}&language=${language}`)
   .then((response) => setTitleDetail(response.data))    
-  .catch((err) => console.log(err))    
+  .catch((err) => console.log('getById',err))    
 }
 
 export const getLang = (setLang: any) => {

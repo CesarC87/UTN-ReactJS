@@ -7,17 +7,19 @@ import { Link } from "react-router-dom";
 import imagenReemplazo from "../../assets/moviefun-replace.jpg";
 import "./Card.scss";
 
-const Card = ({ film, imageUrl, type }: { film: any; imageUrl: any, type:string }) => {
+const Card = ({ film, imageUrl, type, index }: { film: any; imageUrl: any, type:string, index:number}) => {
 	// console.log('Film: ', film);
 	const vote_average = Number(film.vote_average) * 10;
 	const color = "hsl(32, 100%, " + (vote_average * 0.5 + 50) + "%)";
 	const vote_color = { color: color };
 	const titleId = film.id;
 
-	console.log('film: ', film);
+	console.log('index', index)
+	const testId = `cardLink${index}`
+	console.log('testId', testId)
 
 	return (
-		<Link to={`/title/${titleId}/${type}`}>
+		<Link to={`/title/${titleId}/${type}`} data-testid={testId}>
 			<div
 				className="card"
 				onClick={() => {

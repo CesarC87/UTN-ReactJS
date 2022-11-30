@@ -12,7 +12,9 @@ const Home = () => {
 		<section>		
 			<CardContainer />
 			{movies?.queryResults.length === 0 && (
-				<div className="carousel-area">
+				<div className="carousel-area"
+					 data-testid="carousel-area"
+					 >
 					<div className="container">
 						<CarouselHome
 							listado={movies.topRated}
